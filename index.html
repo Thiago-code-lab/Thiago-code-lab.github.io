@@ -20,18 +20,59 @@
             --dark: #0a192f;
             --light: #e6f1ff;
             --gray: #8892b0;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             --gradient: linear-gradient(135deg, #00d4ff, #00a1ff);
         }
 
         /* Tema Claro */
         [data-theme="light"] {
-            --secondary: #ffffff;
-            --dark: #f8f9fa;
-            --light: #2c3e50;
-            --gray: #6c757d;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --primary: #1a73e8; /* Azul mais suave */
+            --secondary: #ffffff; /* Fundo branco */
+            --dark: #ffffff; /* Fundo branco */
+            --light: #1f2937; /* Texto principal mais escuro */
+            --gray: #4b5563; /* Texto secundário mais escuro */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: #ffffff; /* Fundo branco para o body */
+        }
+        
+        /* Ajustes específicos para o tema claro */
+        [data-theme="light"] .service-card,
+        [data-theme="light"] .course-card,
+        [data-theme="light"] .project-card,
+        [data-theme="light"] .timeline-content {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+        }
+        
+        [data-theme="light"] .form-control,
+        [data-theme="light"] .filter-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+        
+        [data-theme="light"] .form-control:focus {
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        [data-theme="light"] .filter-btn:hover,
+        [data-theme="light"] .filter-btn.active {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+        
+        [data-theme="light"] .btn-outline {
+            color: #1a73e8;
+            border-color: #1a73e8;
+        }
+        
+        [data-theme="light"] .btn-outline:hover {
+            background: #1a73e8;
+            color: white;
         }
 
         * {
@@ -51,7 +92,21 @@
             color: var(--light);
             background-color: var(--secondary);
             overflow-x: hidden;
-            transition: var(--transition);
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary);
+            z-index: -1;
+            transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* Loading Screen */
@@ -102,29 +157,26 @@
 
         /* Theme Toggle */
         .theme-toggle {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: none;
-            color: var(--dark);
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 1000;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-            display: flex;
+            position: relative;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--dark);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .theme-toggle:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
 
         a {
@@ -194,24 +246,8 @@
         }
 
         /* Parallax Background */
-        .parallax-bg {
-            position: absolute;
-            top: 0;
+        .btn:hover::before {
             left: 0;
-            width: 100%;
-            height: 120%;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
-            z-index: -1;
-            transition: transform 0.1s ease;
-            pointer-events: none;
-        }
-
-        /* Efeitos de Animação - Versão mais rápida */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
-                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .fade-in.visible {
@@ -304,6 +340,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         .logo {
@@ -352,6 +396,64 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        .theme-toggle {
+            display: none;
+        }
+        
+        .theme-toggle span {
+            display: none;
+        }
+        
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 992px) {
+            .theme-toggle {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 12px 20px;
+                border-radius: 0;
+                margin: 10px 0 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .theme-toggle span {
+                display: inline;
+            }
+            
+            .nav-links .theme-toggle-container {
+                display: block;
+                padding: 10px 0;
+                margin-top: 10px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (min-width: 993px) {
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                padding: 0;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .theme-toggle {
+                margin-left: 15px;
+            }
+            
+            .theme-toggle:hover {
+                transform: none;
+                background: rgba(255, 255, 255, 0.1);
+            }
         }
 
         /* Seção Home */
@@ -856,6 +958,24 @@
             overflow: hidden;
         }
 
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #051427 0%, #0a2e5c 50%, #0f0f23 100%);
+            z-index: -2;
+            opacity: 1;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: background;
+        }
+        
+        [data-theme="light"] .parallax-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6ecf2 50%, #d9e2ec 100%);
+            opacity: 1;
+        }
+
         .social-links a::before {
             content: '';
             position: absolute;
@@ -863,9 +983,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient);
-            opacity: 0;
-            transition: all 0.3s ease;
             z-index: -1;
         }
 
@@ -902,6 +1019,13 @@
             .social-links {
                 margin-top: 20px;
                 justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .theme-toggle {
+                margin-left: 0;
+                margin-right: 10px;
             }
         }
 
@@ -1332,6 +1456,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-icon {
@@ -1563,10 +1688,6 @@
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <i class="fas fa-sun"></i>
-    </button>
 
     <!-- Cabeçalho -->
     <header>
@@ -1574,13 +1695,21 @@
             <nav class="navbar">
                 <a href="#" class="logo">Thiago Cardoso</a>
                 
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" class="active">Início</a></li>
-                    <li><a href="#trajetoria">Trajetória</a></li>
-                    <li><a href="#servicos">Serviços</a></li>
-                    <li><a href="#cursos">Cursos</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                </ul>
+                <div class="nav-right">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home" class="active">Início</a></li>
+                        <li><a href="#trajetoria">Trajetória</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#cursos">Cursos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li class="theme-toggle-container">
+                            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                                <i class="fas fa-moon"></i>
+                                <span>Alterar Tema</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="hamburger" id="hamburger">
                     <span></span>
