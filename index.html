@@ -206,11 +206,12 @@
             pointer-events: none;
         }
 
-        /* Animações de Entrada */
+        /* Efeitos de Animação - Versão mais rápida */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(15px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .fade-in.visible {
@@ -220,8 +221,9 @@
 
         .slide-left {
             opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-30px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .slide-left.visible {
@@ -231,8 +233,9 @@
 
         .slide-right {
             opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(30px);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .slide-right.visible {
@@ -242,8 +245,9 @@
 
         .scale-in {
             opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.95);
+            transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                        transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .scale-in.visible {
@@ -390,19 +394,12 @@
             margin: 25px 0 35px 0;
             min-height: 70px;
             font-weight: 500;
+            transition: opacity 0.3s ease-in-out;
         }
-
-        .cursor {
+        
+        #typing-content {
             display: inline-block;
-            width: 3px;
-            background-color: var(--primary);
-            margin-left: 2px;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+            transition: opacity 0.3s ease-in-out;
         }
 
         .home-image {
@@ -951,7 +948,8 @@
             .home-content {
                 flex-direction: column-reverse;
                 text-align: center;
-                gap: 40px;
+                gap: 30px;
+                padding: 40px 0;
             }
 
             .home-text {
@@ -959,6 +957,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                padding: 0 15px;
             }
 
             .home-text h1 {
@@ -1005,8 +1004,12 @@
 
         @media (max-width: 768px) {
             .section-title {
-                font-size: 2.4rem;
-                margin-bottom: 60px;
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .container {
+                padding: 0 20px;
             }
 
             .hamburger {
@@ -1057,10 +1060,6 @@
                 padding: 80px 0;
             }
 
-            [data-theme="light"] .nav-links {
-                background: white;
-            }
-
             .nav-links.active {
                 right: 0;
             }
@@ -1070,27 +1069,116 @@
             }
 
             .home-text h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                line-height: 1.2;
             }
 
             .typing-text {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
+                margin: 15px 0 25px;
+                min-height: 50px;
+            }
+
+            .home-image {
+                width: 280px;
+                height: 280px;
+                margin: 0 auto 30px;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
             }
 
             .services-grid,
             .courses-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
 
-            .contact-form {
-                padding: 30px 25px;
+            .service-card,
+            .course-card {
+                padding: 30px 20px;
+            }
+
+            .service-card i,
+            .course-card i {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+
+            .project-filters {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .project-image {
+                height: 180px;
+            }
+
+            .project-info {
+                padding: 20px;
+            }
+
+            .project-info h3 {
+                font-size: 1.3rem;
+            }
+
+            .project-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .contact-channels {
+                width: 100%;
+            }
+
+            .channel-link {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .copyright {
+                margin-top: 30px;
+                padding-top: 20px;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 576px) {
             .section-title {
-                font-size: 2rem;
-                margin-bottom: 50px;
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+                text-align: center;
             }
 
             .home-text h1 {
@@ -1503,8 +1591,10 @@
             <div class="home-content">
                 <div class="home-text slide-left">
                     <h1>Olá, eu sou <span>Thiago Cardoso</span></h1>
-                    <div class="typing-text" id="typing-text">Desenvolvedor <span class="cursor">|</span></div>
-                    <a href="#contato" class="btn">Entre em Contato</a>
+                    <div class="typing-text">
+                        <span id="typing-content">Estagiario DevSecOps</span>
+                    </div>
+                    <a href="#contato" class="btn" onclick="event.preventDefault(); document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });">Entre em Contato</a>
                 </div>
                 <div class="home-image slide-right">
                     <img src="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-crop_800_800/B56ZkdcTSfIAAI-/0/1757135582996?e=1759968000&v=beta&t=_RRMZ3W671MfjKoceWkvDVWsywKw-RcGr_C5gttScso" alt="Thiago Cardoso">
@@ -1751,8 +1841,8 @@
     </section>
 
 
-    <!-- Rodapé -->
-    <footer>
+    <!-- Rodapé / Contato -->
+    <footer id="contato">
         <div class="container">
             <div class="footer-content">
                 <div class="contact-channels">
@@ -1851,21 +1941,24 @@
 
         // ========== ANIMAÇÕES DE ENTRADA ==========
         function initAnimations() {
-            // Adicionar delay escalonado aos elementos
+            // Adicionar delay escalonado aos elementos (reduzido para 0.05s)
             const fadeElements = document.querySelectorAll('.fade-in');
             const slideElements = document.querySelectorAll('.slide-left, .slide-right');
             const scaleElements = document.querySelectorAll('.scale-in');
             
             [...fadeElements, ...slideElements, ...scaleElements].forEach((el, index) => {
-                el.style.transitionDelay = `${index * 0.1}s`;
+                el.style.transitionDelay = `${index * 0.05}s`;
             });
             
             checkAnimations();
+            
+            // Verificar animações mais frequentemente
+            setInterval(checkAnimations, 100);
         }
 
         function checkAnimations() {
-            const animatedElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in');
-            const triggerBottom = window.innerHeight * 0.8;
+            const animatedElements = document.querySelectorAll('.fade-in:not(.visible), .slide-left:not(.visible), .slide-right:not(.visible), .scale-in:not(.visible)');
+            const triggerBottom = window.innerHeight * 0.85; // Dispara um pouco mais cedo
 
             animatedElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
@@ -1899,40 +1992,33 @@
         // ========== EFEITO DE DIGITAÇÃO ==========
         const texts = ['Estagiario DevSecOps', 'Analista de Dados', 'Entusiasta de Cloud', 'Estudante de Big Data', 'Estudante de Cybersecurity'];
         let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typeSpeed = 100;
-
-        function typeWriter() {
-            const currentText = texts[textIndex];
-            const typingElement = document.getElementById('typing-text');
+        
+        function changeText() {
+            const typingContent = document.getElementById('typing-content');
+            if (!typingContent) return;
             
-            if (isDeleting) {
-                typingElement.innerHTML = currentText.substring(0, charIndex - 1) + '<span class="cursor">|</span>';
-                charIndex--;
-                typeSpeed = 50;
-            } else {
-                typingElement.innerHTML = currentText.substring(0, charIndex + 1) + '<span class="cursor">|</span>';
-                charIndex++;
-                typeSpeed = 100;
-            }
-
-            if (!isDeleting && charIndex === currentText.length) {
-                isDeleting = true;
-                typeSpeed = 2000; // Pausa antes de deletar
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
+            // Transição suave de fade out
+            typingContent.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Muda o texto
                 textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 500; // Pausa antes de começar nova palavra
-            }
-
-            setTimeout(typeWriter, typeSpeed);
+                typingContent.textContent = texts[textIndex];
+                
+                // Transição de volta
+                setTimeout(() => {
+                    typingContent.style.opacity = '1';
+                }, 10);
+                
+                // Agenda a próxima mudança
+                setTimeout(changeText, 3000); // Muda a cada 3 segundos
+            }, 300); // Tempo de fade out
         }
 
-        // Iniciar efeito de digitação após loading
+        // Iniciar troca de texto após loading
         setTimeout(() => {
-            typeWriter();
-        }, 2000);
+            changeText();
+        }, 1000);
 
         // ========== FILTRO DE PROJETOS ==========
         const filterBtns = document.querySelectorAll('.filter-btn');
