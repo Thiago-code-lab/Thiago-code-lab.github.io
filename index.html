@@ -11,6 +11,8 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload hero image -->
+    <link rel="preload" as="image" href="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-scale_200_200/B56ZkdcTSfIAAY-/0/1757135583080?e=1762992000&v=beta&t=meJ8bC8pMndy-Q0VH4UoYKSWzmwg7h_og_0JYUavJdk" imagesrcset="" imagesizes="(max-width: 992px) 320px, 380px">
     
     <style>
         /* Reset e Variáveis */
@@ -476,6 +478,16 @@
             overflow: hidden;
         }
 
+        /* Particle Canvas in Home */
+        #home .particles-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .home-content {
             display: flex;
             align-items: center;
@@ -678,6 +690,9 @@
             overflow: hidden;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.06);
         }
 
         .service-card::before {
@@ -697,7 +712,7 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.12);
             border-color: var(--primary);
         }
 
@@ -752,6 +767,9 @@
             overflow: hidden;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.06);
         }
 
         .course-card::before {
@@ -768,7 +786,7 @@
 
         .course-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.12);
             border-color: var(--primary);
         }
 
@@ -1746,7 +1764,7 @@
                     <a href="#contato" class="btn" onclick="event.preventDefault(); document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });">Entre em Contato</a>
                 </div>
                 <div class="home-image slide-right">
-                    <img src="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-crop_800_800/B56ZkdcTSfIAAI-/0/1757135582996?e=1759968000&v=beta&t=_RRMZ3W671MfjKoceWkvDVWsywKw-RcGr_C5gttScso" alt="Thiago Cardoso">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-scale_200_200/B56ZkdcTSfIAAY-/0/1757135583080?e=1762992000&v=beta&t=meJ8bC8pMndy-Q0VH4UoYKSWzmwg7h_og_0JYUavJdk" alt="Thiago Cardoso" loading="lazy" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" width="380" height="380">
                 </div>
             </div>
         </div>
@@ -1827,10 +1845,10 @@
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card scale-in">
-                    <i class="fab fa-google"></i>
-                    <h3>Google Cloud</h3>
-                    <p>Inteligência Artificial</p>
-                    <span class="course-date">2024</span>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Cisco</h3>
+                    <p>Conceitos Básicos de Redes</p>
+                    <span class="course-date">2025</span>
                 </div>
                 <div class="course-card scale-in">
                     <i class="fas fa-shield-alt"></i>
@@ -1839,15 +1857,27 @@
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card scale-in">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Cisco</h3>
-                    <p>Conceitos Básicos de Redes</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
                     <i class="fas fa-code"></i>
                     <h3>Docker & Kubernetes</h3>
                     <p>Conteinerização e Orquestração</p>
+                    <span class="course-date">2025</span>
+                </div>
+                <div class="course-card scale-in">
+                    <i class="fab fa-google"></i>
+                    <h3>Google</h3>
+                    <p>Certificado Profissional de Análise de Dados do Google</p>
+                    <span class="course-date">2025</span>
+                </div>
+                <div class="course-card scale-in">
+                    <i class="fab fa-google"></i>
+                    <h3>Google Cloud</h3>
+                    <p>Inteligência Artificial</p>
+                    <span class="course-date">2024</span>
+                </div>
+                <div class="course-card scale-in">
+                    <i class="fas fa-user-shield"></i>
+                    <h3>ISACA São Paulo</h3>
+                    <p>CyberSecurity Fundamentals Certificate</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card scale-in">
@@ -1969,6 +1999,9 @@
                             </div>
                             <a href="https://github.com/Thiago-code-lab/nginx-monitor-discord" target="_blank" class="github-link">
                                 <i class="fab fa-github"></i> GitHub
+                                
+                                
+                                Co
                             </a>
                         </div>
                     </div>
@@ -2031,6 +2064,11 @@
         </div>
     </footer>
 
+    <!-- Back to Top Rocket Button -->
+    <button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-rocket rocket"></i>
+    </button>
+
     <script>
         // ========== LOADING SCREEN ==========
         window.addEventListener('load', () => {
@@ -2074,8 +2112,6 @@
             
             // Parallax effect
             updateParallax();
-            // Check animations
-            checkAnimations();
         });
 
         function updateParallax() {
@@ -2088,34 +2124,241 @@
             });
         }
 
-        // ========== ANIMAÇÕES DE ENTRADA ==========
+        // ========== HOME PARTICLES & CURSOR TRAIL ==========
+        (function () {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const canvas = document.getElementById('homeParticles');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let dpr = Math.min(window.devicePixelRatio || 1, 2);
+            let width = 0, height = 0;
+            let particles = [];
+            let mouse = { x: -9999, y: -9999, active: false };
+            let trail = [];
+            const maxTrail = 12;
+            const baseCount = (isTouch || prefersReduced) ? 24 : 64;
+
+            function resize() {
+                const rect = canvas.getBoundingClientRect();
+                width = rect.width; height = rect.height;
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function rand(min, max) { return Math.random() * (max - min) + min; }
+
+            function initParticles() {
+                particles = new Array(baseCount).fill(0).map(() => ({
+                    x: rand(0, width),
+                    y: rand(0, height),
+                    vx: rand(-0.3, 0.3),
+                    vy: rand(-0.3, 0.3),
+                    r: rand(1, 2.2),
+                    alpha: rand(0.35, 0.85)
+                }));
+            }
+
+            function colorPrimary(alpha = 1) {
+                // Approximate primary color from gradient; fallback to currentColor
+                const s = getComputedStyle(document.documentElement);
+                const primary = s.getPropertyValue('--primary').trim() || '#00d4ff';
+                // Convert hex to rgba if needed
+                return primary.startsWith('#') ? hexToRgba(primary, alpha) : primary;
+            }
+
+            function hexToRgba(hex, a) {
+                const h = hex.replace('#','');
+                const bigint = parseInt(h.length === 3 ? h.split('').map(c=>c+c).join('') : h, 16);
+                const r = (bigint >> 16) & 255;
+                const g = (bigint >> 8) & 255;
+                const b = bigint & 255;
+                return `rgba(${r}, ${g}, ${b}, ${a})`;
+            }
+
+            function step() {
+                ctx.clearRect(0, 0, width, height);
+
+                // Particles update
+                particles.forEach(p => {
+                    // Mouse interaction (repel slightly)
+                    if (mouse.active) {
+                        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+                        const dist2 = dx*dx + dy*dy;
+                        const range = 140; // px
+                        if (dist2 < range*range) {
+                            const dist = Math.sqrt(dist2) || 1;
+                            const force = (range - dist) / range * 0.6;
+                            p.vx += (dx / dist) * force * 0.08;
+                            p.vy += (dy / dist) * force * 0.08;
+                        }
+                    }
+
+                    p.x += p.vx; p.y += p.vy;
+                    // Soft bounds
+                    if (p.x < -10) { p.x = width + 10; }
+                    if (p.x > width + 10) { p.x = -10; }
+                    if (p.y < -10) { p.y = height + 10; }
+                    if (p.y > height + 10) { p.y = -10; }
+
+                    // slight friction
+                    p.vx *= 0.98; p.vy *= 0.98;
+                });
+
+                // Draw particles and connections
+                const col = colorPrimary(0.9);
+                particles.forEach((p, i) => {
+                    ctx.beginPath();
+                    ctx.fillStyle = colorPrimary(p.alpha);
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+                    ctx.fill();
+
+                    for (let j=i+1; j<particles.length; j++) {
+                        const q = particles[j];
+                        const dx = p.x - q.x, dy = p.y - q.y;
+                        const d2 = dx*dx + dy*dy;
+                        if (d2 < 120*120) {
+                            const op = 1 - (Math.sqrt(d2)/120);
+                            ctx.strokeStyle = colorPrimary(op*0.25);
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+
+                // Cursor trail
+                if (mouse.active && !prefersReduced && !isTouch) {
+                    trail.push({ x: mouse.x, y: mouse.y, t: performance.now() });
+                    if (trail.length > maxTrail) trail.shift();
+                    for (let i=1; i<trail.length; i++) {
+                        const a = trail[i-1], b = trail[i];
+                        const age = (performance.now() - b.t) / 600; // fade time
+                        const alpha = Math.max(0, 0.5 - age);
+                        if (alpha <= 0) continue;
+                        ctx.strokeStyle = colorPrimary(alpha);
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                } else {
+                    trail.length = 0;
+                }
+
+                raf = requestAnimationFrame(step);
+            }
+
+            let raf;
+            function start() {
+                if (prefersReduced) return; // honor user preference
+                resize();
+                initParticles();
+                cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(step);
+            }
+
+            function stop() {
+                cancelAnimationFrame(raf);
+            }
+
+            window.addEventListener('resize', resize);
+            window.addEventListener('blur', stop);
+            window.addEventListener('focus', start);
+            window.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; mouse.active = true;
+            }, { passive: true });
+            window.addEventListener('mouseleave', () => { mouse.active = false; }, { passive: true });
+
+            // Kickoff after load
+            window.addEventListener('load', start);
+        })();
+
+        // ========== CARD 3D TILT (lightweight) ==========
+        (function(){
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const supportsHover = window.matchMedia('(hover: hover)').matches;
+            if (prefersReduced || !supportsHover) return;
+            const cards = document.querySelectorAll('.service-card, .course-card, .project-card');
+            const maxRotate = 6; // degrees
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const cx = rect.left + rect.width/2;
+                    const cy = rect.top + rect.height/2;
+                    const dx = (e.clientX - cx) / (rect.width/2);
+                    const dy = (e.clientY - cy) / (rect.height/2);
+                    const rx = (-dy * maxRotate).toFixed(2);
+                    const ry = (dx * maxRotate).toFixed(2);
+                    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-10px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        })();
+
+        // ========== BACK TO TOP (rocket) ==========
+        (function(){
+            const btn = document.getElementById('backToTop');
+            if (!btn) return;
+            const showAt = 400;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > showAt) btn.classList.add('show'); else btn.classList.remove('show');
+            });
+            btn.addEventListener('click', () => {
+                btn.classList.add('launch');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => btn.classList.remove('launch'), 600);
+            });
+        })();
+
+        // ========== MICROINTERACTION: Ripple on .btn clicks ==========
+        document.addEventListener('click', (e) => {
+            const target = e.target.closest('.btn');
+            if (!target) return;
+            const rect = target.getBoundingClientRect();
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+            target.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 650);
+        });
+        // ========== ANIMAÇÕES DE ENTRADA (Intersection Observer) ==========
         function initAnimations() {
             // Adicionar delay escalonado aos elementos (reduzido para 0.05s)
             const fadeElements = document.querySelectorAll('.fade-in');
             const slideElements = document.querySelectorAll('.slide-left, .slide-right');
             const scaleElements = document.querySelectorAll('.scale-in');
-            
+
             [...fadeElements, ...slideElements, ...scaleElements].forEach((el, index) => {
                 el.style.transitionDelay = `${index * 0.05}s`;
             });
-            
-            checkAnimations();
-            
-            // Verificar animações mais frequentemente
-            setInterval(checkAnimations, 100);
-        }
 
-        function checkAnimations() {
-            const animatedElements = document.querySelectorAll('.fade-in:not(.visible), .slide-left:not(.visible), .slide-right:not(.visible), .scale-in:not(.visible)');
-            const triggerBottom = window.innerHeight * 0.85; // Dispara um pouco mais cedo
-
-            animatedElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                
-                if (elementTop < triggerBottom) {
-                    element.classList.add('visible');
-                }
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -10% 0px',
+                threshold: 0.1
             });
+
+            document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => io.observe(el));
         }
 
         // ========== MENU MOBILE ==========
