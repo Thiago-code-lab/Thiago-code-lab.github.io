@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload hero image -->
-    <link rel="preload" as="image" href="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-scale_200_200/B56ZkdcTSfIAAY-/0/1757135583080?e=1762992000&v=beta&t=meJ8bC8pMndy-Q0VH4UoYKSWzmwg7h_og_0JYUavJdk" imagesrcset="" imagesizes="(max-width: 992px) 320px, 380px">
+    <link rel="preload" as="image" href="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-crop_800_800/B56ZkdcTSfIAAI-/0/1757135582996?e=1762387200&v=beta&t=vu4tMDZmV4W4WUGmPAvPYjjMti9lD_IOR-9ZbZ5qWPc" imagesrcset="" imagesizes="(max-width: 992px) 320px, 380px">
     
     <style>
         /* Reset e Variáveis */
@@ -320,10 +320,37 @@
             border-radius: 2px;
         }
 
-        /* Navegação Melhorada */
+[data-theme="light"] header {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: var(--transition);
+    z-index: 10;
+}
         header {
-            position: fixed;
-            top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
@@ -751,7 +778,7 @@
 
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 60px;
         }
@@ -1764,7 +1791,7 @@
                     <a href="#contato" class="btn" onclick="event.preventDefault(); document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });">Entre em Contato</a>
                 </div>
                 <div class="home-image slide-right">
-                    <img src="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-scale_200_200/B56ZkdcTSfIAAY-/0/1757135583080?e=1762992000&v=beta&t=meJ8bC8pMndy-Q0VH4UoYKSWzmwg7h_og_0JYUavJdk" alt="Thiago Cardoso" loading="lazy" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" width="380" height="380">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-crop_800_800/B56ZkdcTSfIAAI-/0/1757135582996?e=1762387200&v=beta&t=vu4tMDZmV4W4WUGmPAvPYjjMti9lD_IOR-9ZbZ5qWPc" alt="Thiago Cardoso" loading="lazy" decoding="async" fetchpriority="high" referrerpolicy="no-referrer" width="380" height="380">
                 </div>
             </div>
         </div>
@@ -1775,7 +1802,6 @@
         <div class="parallax-bg"></div>
         <div class="container">
             <h2 class="section-title fade-in">Minha <span>Trajetória</span></h2>
-            
             <div class="timeline">
                 <!-- Item 1 -->
                 <article class="timeline-item fade-in">
@@ -1813,22 +1839,22 @@
         <div class="container">
           <h2 class="section-title fade-in">O que eu faço</h2>
           <div class="services-grid">
-            <div class="service-card scale-in">
-              <i class="fas fa-cloud"></i>
-              <h3>Cloud & DevSecOps</h3>
-              <p>Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.</p>
-            </div>
-            <div class="service-card scale-in">
-              <i class="fas fa-database"></i>
-              <h3>Big Data & Análise</h3>
-              <p>Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.</p>
-            </div>
-            <div class="service-card scale-in">
-              <i class="fas fa-shield-alt"></i>
-              <h3>Segurança da Informação</h3>
-              <p>Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.</p>
-            </div>
-          </div>
+                <div class="service-card scale-in">
+                  <i class="fas fa-cloud"></i>
+                  <h3>Cloud & DevSecOps</h3>
+                  <p>Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.</p>
+                </div>
+                <div class="service-card scale-in">
+                  <i class="fas fa-database"></i>
+                  <h3>Big Data & Análise</h3>
+                  <p>Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.</p>
+                </div>
+                <div class="service-card scale-in">
+                  <i class="fas fa-shield-alt"></i>
+                  <h3>Segurança da Informação</h3>
+                  <p>Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.</p>
+                </div>
+              </div>
         </div>
       </section>
 
@@ -1838,54 +1864,53 @@
         <div class="container">
             <h2 class="section-title fade-in">Cursos e Certificações</h2>
             <div class="courses-grid">
-                <div class="course-card scale-in">
-                    <i class="fab fa-aws"></i>
-                    <h3>AWS Academy</h3>
-                    <p>Cloud Quest: Cloud Practitioner</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Cisco</h3>
-                    <p>Conceitos Básicos de Redes</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Cisco</h3>
-                    <p>Gerenciamento de Ameaças Cibernéticas</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fas fa-code"></i>
-                    <h3>Docker & Kubernetes</h3>
-                    <p>Conteinerização e Orquestração</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fab fa-google"></i>
-                    <h3>Google</h3>
-                    <p>Certificado Profissional de Análise de Dados do Google</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fab fa-google"></i>
-                    <h3>Google Cloud</h3>
-                    <p>Inteligência Artificial</p>
-                    <span class="course-date">2024</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fas fa-user-shield"></i>
-                    <h3>ISACA São Paulo</h3>
-                    <p>CyberSecurity Fundamentals Certificate</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card scale-in">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Métodos Ágeis</h3>
-                    <p>Fundamentos do SCRUM</p>
-                    <span class="course-date">2025</span>
-                </div>
+                        <div class="course-card scale-in">
+                            <i class="fab fa-aws"></i>
+                            <h3>AWS Academy</h3>
+                            <p>Cloud Quest: Cloud Practitioner</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Cisco</h3>
+                            <p>Conceitos Básicos de Redes</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Cisco</h3>
+                            <p>Gerenciamento de Ameaças Cibernéticas</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fas fa-code"></i>
+                            <h3>Docker & Kubernetes</h3>
+                            <p>Conteinerização e Orquestração</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fab fa-google"></i>
+                            <h3>Google</h3>
+                            <p>Certificado Profissional de Análise de Dados do Google</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fab fa-google"></i>
+                            <h3>Google Cloud</h3>
+                            <p>Inteligência Artificial</p>
+                            <span class="course-date">2024</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fas fa-user-shield"></i>
+                            <h3>ISACA São Paulo</h3>
+                            <p>CyberSecurity Fundamentals Certificate</p>
+                            <span class="course-date">2025</span>
+                        </div>
+                        <div class="course-card scale-in">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Métodos Ágeis</h3>
+                            <p>Fundamentos do SCRUM</p>
+                            <span class="course-date">2025</span>
             </div>
         </div>
     </section>
@@ -2022,6 +2047,7 @@
         </div>
     </section>
 
+    
 
     <!-- Rodapé / Contato -->
     <footer id="contato">
