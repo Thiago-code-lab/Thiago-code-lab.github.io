@@ -12,7 +12,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Preload hero image -->
-    <link rel="preload" as="image" href="https://media.licdn.com/dms/image/v2/D5603AQF9QulJFUoKdw/profile-displayphoto-crop_800_800/B56ZkdcTSfIAAI-/0/1757135582996?e=1762387200&v=beta&t=vu4tMDZmV4W4WUGmPAvPYjjMti9lD_IOR-9ZbZ5qWPc" imagesrcset="" imagesizes="(max-width: 992px) 320px, 380px">
+    <link rel="preload" as="image" href="https://camo.githubusercontent.com/74912964b518728c4259c4bfe9bb898788736079e64250e945ae7f9b63e9b83b/68747470733a2f2f6d656469612e6c6963646e2e636f6d2f646d732f696d6167652f76322f44353630334151467a6b5f45626447465558672f70726f66696c652d646973706c617970686f746f2d63726f705f3830305f3830302f4235365a705244585375473041492d2f302f313736323239363432393537333f653d3137363630313630303026763d6265746126743d314a676a5850474673665876414c76735752537167574b3236556c774f7373396876446a4f634e55617567" imagesrcset="" imagesizes="(max-width: 992px) 320px, 380px">
     
     <style>
         /* Reset e Variáveis */
@@ -181,6 +181,27 @@
         .theme-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Language Toggle */
+        .lang-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .lang-btn:hover {
+            background: var(--gradient);
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-2px);
         }
 
         a {
@@ -468,6 +489,11 @@
                 padding: 10px 0;
                 margin-top: 10px;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .lang-btn {
+                padding: 8px 10px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1762,9 +1788,12 @@
                         <li><a href="#cursos">Cursos</a></li>
                         <li><a href="#contato">Contato</a></li>
                         <li class="theme-toggle-container">
-                            <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                                <i class="fas fa-moon"></i>
-                            </button>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+                                    <i class="fas fa-moon"></i>
+                                </button>
+                                <button id="lang-toggle" class="lang-btn" aria-label="Alternar idioma">EN</button>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -1791,7 +1820,7 @@
                     <a href="#contato" class="btn" onclick="event.preventDefault(); document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });">Entre em Contato</a>
                 </div>
                 <div class="home-image slide-right">
-                    <img src="https://media.licdn.com/dms/image/v2/D5603AQFzk_EbdGFUXg/profile-displayphoto-crop_800_800/B56ZpRDXSuG0AI-/0/1762296429573?e=1764201600&v=beta&t=9jsi4QvC-f9I9m6of2nCXfjJDFqdQBheodSMspWKMNM" width="380" height="380">
+                    <img src="https://camo.githubusercontent.com/74912964b518728c4259c4bfe9bb898788736079e64250e945ae7f9b63e9b83b/68747470733a2f2f6d656469612e6c6963646e2e636f6d2f646d732f696d6167652f76322f44353630334151467a6b5f45626447465558672f70726f66696c652d646973706c617970686f746f2d63726f705f3830305f3830302f4235365a705244585375473041492d2f302f313736323239363432393537333f653d3137363630313630303026763d6265746126743d314a676a5850474673665876414c76735752537167574b3236556c774f7373396876446a4f634e55617567" alt="Foto de Thiago Cardoso" width="380" height="380">
                 </div>
             </div>
         </div>
@@ -1927,7 +1956,6 @@
         <div class="parallax-bg"></div>
         <div class="container">
             <h2 class="section-title fade-in">Meus <span>Projetos</span></h2>
-            
             <!-- Filtros -->
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">Todos</button>
@@ -2034,6 +2062,98 @@
                                 
                                 
                                 Co
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projeto 4: Tour4Friends Analytics - Data Warehouse -->
+                <div class="project-card" data-category="data">
+                    <div class="project-image">
+                        <i class="fas fa-warehouse project-icon"></i>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Thiago-code-lab/tour4friends-analytics" target="_blank" class="btn-action">
+                                <i class="fab fa-github"></i>
+                                Ver Código
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Tour4Friends Analytics - Data Warehouse</h3>
+                        <p>DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema).</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge postgres">PostgreSQL</span>
+                            <span class="tech-badge sql">PL/pgSQL</span>
+                            <span class="tech-badge git">Git</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stats-left">
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                            <a href="https://github.com/Thiago-code-lab/tour4friends-analytics" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5: CI/CD com GitHub Actions, ArgoCD e Kubernetes -->
+                <div class="project-card" data-category="devsecops">
+                    <div class="project-image">
+                        <i class="fas fa-code-branch project-icon"></i>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Thiago-code-lab/compass-python-api-ci-cd" target="_blank" class="btn-action">
+                                <i class="fab fa-github"></i>
+                                Ver Código
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Pipeline CI/CD com GitHub Actions, ArgoCD e K8s</h3>
+                        <p>Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge github">GitHub Actions</span>
+                            <span class="tech-badge argo">ArgoCD</span>
+                            <span class="tech-badge kubernetes">Kubernetes</span>
+                            <span class="tech-badge docker">Docker</span>
+                            <span class="tech-badge fastapi">FastAPI</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stats-left">
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                            <a href="https://github.com/Thiago-code-lab/compass-python-api-ci-cd" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 6: AWS Cloud Practitioner Brasil (Estudos) -->
+                <div class="project-card" data-category="data">
+                    <div class="project-image">
+                        <i class="fas fa-cloud project-icon"></i>
+                        <div class="project-overlay">
+                            <a href="https://github.com/Thiago-code-lab/aws-cloud-practitioner-brasil" target="_blank" class="btn-action">
+                                <i class="fab fa-github"></i>
+                                Ver Código
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>AWS Cloud Practitioner Brasil</h3>
+                        <p>Repositório colaborativo em PT-BR com trilha de estudos, resumos e materiais para certificação AWS Cloud Practitioner (CLF-C02).</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge aws">AWS</span>
+                            <span class="tech-badge docs">Docs</span>
+                            <span class="tech-badge cloud">Cloud</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stats-left">
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                            <a href="https://github.com/Thiago-code-lab/aws-cloud-practitioner-brasil" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> GitHub
                             </a>
                         </div>
                     </div>
@@ -2415,8 +2535,20 @@
         });
 
         // ========== EFEITO DE DIGITAÇÃO ==========
-        const texts = ['Estagiario DevSecOps', 'Analista de Dados', 'Entusiasta de Cloud', 'Estudante de Big Data', 'Estudante de Cybersecurity'];
-        let textIndex = 0;
+        const textsPT = ['Estagiario DevSecOps', 'Analista de Dados', 'Entusiasta de Cloud', 'Estudante de Big Data', 'Estudante de Cybersecurity'];
+        const textsEN = ['DevSecOps Intern', 'Data Analyst', 'Cloud Enthusiast', 'Big Data Student', 'Cybersecurity Student'];
+        window.typingTexts = textsPT.slice();
+        window.textIndex = 0;
+
+        // Permite ao i18n trocar as frases dinamicamente
+        window.setTypingTexts = function(lang) {
+            window.typingTexts = (lang === 'en') ? textsEN.slice() : textsPT.slice();
+            window.textIndex = 0;
+            const el = document.getElementById('typing-content');
+            if (el && window.typingTexts.length) {
+                el.textContent = window.typingTexts[0];
+            }
+        }
         
         function changeText() {
             const typingContent = document.getElementById('typing-content');
@@ -2427,8 +2559,8 @@
             
             setTimeout(() => {
                 // Muda o texto
-                textIndex = (textIndex + 1) % texts.length;
-                typingContent.textContent = texts[textIndex];
+                window.textIndex = (window.textIndex + 1) % window.typingTexts.length;
+                typingContent.textContent = window.typingTexts[window.textIndex];
                 
                 // Transição de volta
                 setTimeout(() => {
@@ -2551,4 +2683,287 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </body>
+    <script>
+        (function () {
+            const btn = document.getElementById('lang-toggle');
+            if (!btn) return;
+
+            // General text replacements (broad)
+            const dictPTtoEN = {
+                'Olá, eu sou': 'Hello, I am',
+                'Entre em Contato': 'Contact Me',
+                'Estagiário DevSecOps': 'DevSecOps Intern',
+                'Estagiario DevSecOps': 'DevSecOps Intern',
+                'Minha': 'My',
+                'Meus': 'My',
+                'Trajetória': 'Journey',
+                'Início': 'Home',
+                'Serviços': 'Services',
+                'Cursos e Certificações': 'Courses and Certifications',
+                'Cursos': 'Courses',
+                'Certificações': 'Certifications',
+                'Contato': 'Contact',
+                'O que eu faço': 'What I do',
+                'Todos os direitos reservados.': 'All rights reserved.',
+                'Ver Código': 'View Code',
+                'Ver Todos os Projetos': 'View All Projects',
+                'repositórios públicos disponíveis': 'public repositories available',
+                'Todos': 'All',
+                '2025 - Atual': '2025 - Present',
+                'Conceitos Básicos de Redes': 'Networking Basics',
+                'Gerenciamento de Ameaças Cibernéticas': 'Cyber Threat Management',
+                'Conteinerização e Orquestração': 'Containerization and Orchestration',
+                'Certificado Profissional de Análise de Dados do Google': 'Google Data Analytics Professional Certificate',
+                'Inteligência Artificial': 'Artificial Intelligence',
+                'Métodos Ágeis': 'Agile Methods',
+                'Fundamentos do SCRUM': 'SCRUM Fundamentals',
+                'Prevenção e Reação aos Incidentes Cibernéticos': 'Prevention and Response to Cyber Incidents',
+                'Ver Projeto': 'View Project',
+                'Tecnologias': 'Technologies',
+                'Habilidades': 'Skills',
+                'Experiência': 'Experience',
+                'Formação': 'Education',
+                'Ano': 'Year',
+                'Cidade': 'City',
+                'Meus Projetos': 'My Projects'
+            };
+
+            // Build reverse dictionary EN->PT automatically
+            const dictENtoPT = Object.entries(dictPTtoEN)
+                .reduce((acc, [pt, en]) => (acc[en] = pt, acc), {});
+
+            function replaceInTextNodes(root, map) {
+                const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+                    acceptNode(node) {
+                        if (!node.nodeValue) return NodeFilter.FILTER_REJECT;
+                        // Skip whitespace-only nodes
+                        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                        // Skip inside script/style
+                        const p = node.parentElement;
+                        if (!p) return NodeFilter.FILTER_REJECT;
+                        const tag = p.tagName;
+                        if (tag === 'SCRIPT' || tag === 'STYLE') return NodeFilter.FILTER_REJECT;
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                });
+
+                const keys = Object.keys(map).sort((a,b) => b.length - a.length);
+                const re = new RegExp(keys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+
+                const nodes = [];
+                while (walker.nextNode()) nodes.push(walker.currentNode);
+                nodes.forEach(node => {
+                    node.nodeValue = node.nodeValue.replace(re, m => map[m] ?? m);
+                });
+            }
+
+            // Targeted translations for elements with HTML structure
+            const bySelector = {
+                pt: {
+                    'a[href="#home"]': 'Início',
+                    'a[href="#trajetoria"]': 'Trajetória',
+                    'a[href="#servicos"]': 'Serviços',
+                    'a[href="#cursos"]': 'Cursos',
+                    'a[href="#contato"]': 'Contato',
+                    '#home .home-text h1': 'Olá, eu sou <span>Thiago Cardoso</span>',
+                    '#typing-content': 'Estagiario DevSecOps',
+                    '#home .home-text .btn': 'Entre em Contato',
+                    '#trajetoria .section-title': 'Minha <span>Trajetória</span>',
+                    '#servicos .section-title': 'O que eu faço',
+                    '#cursos .section-title': 'Cursos e Certificações',
+                    '#projetos .section-title': 'Meus <span>Projetos</span>',
+                    '.project-filters .filter-btn[data-filter="all"]': 'Todos',
+                    '.projects-cta .btn-outline': '<i class="fab fa-github"></i>\n                    Ver Todos os Projetos',
+                    '.projects-count': '12+ repositórios públicos disponíveis',
+                    'footer .contact-channels h3': 'Entre em Contato',
+                    '.copyright': `© <span id="current-year"></span> Thiago Cardoso. Todos os direitos reservados.`,
+                },
+                en: {
+                    'a[href="#home"]': 'Home',
+                    'a[href="#trajetoria"]': 'Journey',
+                    'a[href="#servicos"]': 'Services',
+                    'a[href="#cursos"]': 'Courses',
+                    'a[href="#contato"]': 'Contact',
+                    '#home .home-text h1': 'Hello, I am <span>Thiago Cardoso</span>',
+                    '#typing-content': 'DevSecOps Intern',
+                    '#home .home-text .btn': 'Contact Me',
+                    '#trajetoria .section-title': 'My <span>Journey</span>',
+                    '#servicos .section-title': 'What I do',
+                    '#cursos .section-title': 'Courses and Certifications',
+                    '#projetos .section-title': 'My <span>Projects</span>',
+                    '.project-filters .filter-btn[data-filter="all"]': 'All',
+                    '.projects-cta .btn-outline': '<i class="fab fa-github"></i>\n                    View All Projects',
+                    '.projects-count': '12+ public repositories available',
+                    'footer .contact-channels h3': 'Contact Me',
+                    '.copyright': `© <span id="current-year"></span> Thiago Cardoso. All rights reserved.`,
+                }
+            };
+
+            // More specific content by order (timeline, services, courses, projects)
+            function applyStructured(lang) {
+                const map = bySelector[lang];
+                Object.entries(map).forEach(([sel, val]) => {
+                    const el = document.querySelector(sel);
+                    if (el) el.innerHTML = val;
+                });
+
+                // Timeline items
+                const tl = document.querySelectorAll('#trajetoria .timeline .timeline-item');
+                if (tl.length >= 3) {
+                    if (lang === 'en') {
+                        tl[0].querySelector('.timeline-date').textContent = '2025 - Present';
+                        tl[0].querySelector('h3').textContent = 'DevSecOps Intern';
+                        const p0 = tl[0].querySelector('p');
+                        if (p0) p0.innerHTML = '<strong>Compass UOL</strong> – Working with AWS, infrastructure automation, CI/CD and Security as Code.';
+
+                        tl[1].querySelector('h3').textContent = 'Bachelor in Big Data for Business';
+                        const p1 = tl[1].querySelector('p');
+                        if (p1) p1.innerHTML = '<strong>FATEC</strong> – Data analysis, cloud computing and business intelligence.';
+
+                        tl[2].querySelector('h3').textContent = 'Technical Degree in Marketing';
+                        const p2 = tl[2].querySelector('p');
+                        if (p2) p2.innerHTML = '<strong>Etec Carlos de Campos</strong> – Digital marketing, SEO and strategic communication.';
+                    } else {
+                        tl[0].querySelector('.timeline-date').textContent = '2025 - Atual';
+                        tl[0].querySelector('h3').textContent = 'Estagiário DevSecOps';
+                        const p0 = tl[0].querySelector('p');
+                        if (p0) p0.innerHTML = '<strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code.';
+
+                        tl[1].querySelector('h3').textContent = 'Graduação em Big Data para Negócios';
+                        const p1 = tl[1].querySelector('p');
+                        if (p1) p1.innerHTML = '<strong>FATEC</strong> – Análise de dados, cloud computing e inteligência de negócios.';
+
+                        tl[2].querySelector('h3').textContent = 'Técnico em Marketing';
+                        const p2 = tl[2].querySelector('p');
+                        if (p2) p2.innerHTML = '<strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica.';
+                    }
+                }
+
+                // Services cards (3)
+                const svc = document.querySelectorAll('#servicos .service-card');
+                if (svc.length >= 3) {
+                    if (lang === 'en') {
+                        svc[0].querySelector('h3').textContent = 'Cloud & DevSecOps';
+                        svc[0].querySelector('p').textContent = 'Cloud infrastructure (AWS), CI/CD, automation with IaC and security practices across the lifecycle.';
+                        svc[1].querySelector('h3').textContent = 'Big Data & Analytics';
+                        svc[1].querySelector('p').textContent = 'Handling large datasets, business insights and cloud integration.';
+                        svc[2].querySelector('h3').textContent = 'Information Security';
+                        svc[2].querySelector('p').textContent = 'Systems protection, data governance, monitoring and cyber defense.';
+                    } else {
+                        svc[0].querySelector('h3').textContent = 'Cloud & DevSecOps';
+                        svc[0].querySelector('p').textContent = 'Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.';
+                        svc[1].querySelector('h3').textContent = 'Big Data & Análise';
+                        svc[1].querySelector('p').textContent = 'Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.';
+                        svc[2].querySelector('h3').textContent = 'Segurança da Informação';
+                        svc[2].querySelector('p').textContent = 'Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.';
+                    }
+                }
+
+                // Courses cards (by order)
+                const courses = document.querySelectorAll('#cursos .course-card');
+                if (courses.length) {
+                    const pt = [
+                        ['AWS Academy', 'Cloud Quest: Cloud Practitioner'],
+                        ['Cisco', 'Conceitos Básicos de Redes'],
+                        ['Cisco', 'Gerenciamento de Ameaças Cibernéticas'],
+                        ['Docker & Kubernetes', 'Conteinerização e Orquestração'],
+                        ['Google', 'Certificado Profissional de Análise de Dados do Google'],
+                        ['Google Cloud', 'Inteligência Artificial'],
+                        ['ISACA São Paulo', 'CyberSecurity Fundamentals Certificate'],
+                        ['Métodos Ágeis', 'Fundamentos do SCRUM'],
+                        ['SENAI São Paulo', 'Prevenção e Reação aos Incidentes Cibernéticos'],
+                    ];
+                    const en = [
+                        ['AWS Academy', 'Cloud Quest: Cloud Practitioner'],
+                        ['Cisco', 'Networking Basics'],
+                        ['Cisco', 'Cyber Threat Management'],
+                        ['Docker & Kubernetes', 'Containerization and Orchestration'],
+                        ['Google', 'Google Data Analytics Professional Certificate'],
+                        ['Google Cloud', 'Artificial Intelligence'],
+                        ['ISACA São Paulo', 'CyberSecurity Fundamentals Certificate'],
+                        ['Agile Methods', 'SCRUM Fundamentals'],
+                        ['SENAI São Paulo', 'Prevention and Response to Cyber Incidents'],
+                    ];
+                    const data = lang === 'en' ? en : pt;
+                    courses.forEach((card, i) => {
+                        const h3 = card.querySelector('h3');
+                        const p = card.querySelector('p');
+                        if (!h3 || !p || !data[i]) return;
+                        h3.textContent = data[i][0];
+                        p.textContent = data[i][1];
+                    });
+                }
+
+                // Projects section
+                const projTitle = document.querySelector('#projetos .section-title');
+                if (projTitle) projTitle.innerHTML = lang === 'en' ? 'My <span>Projects</span>' : 'Meus <span>Projetos</span>';
+
+                // Projects: titles and descriptions by order (supports up to 6 cards)
+                const projectCards = document.querySelectorAll('#projetos .projects-grid .project-card');
+                if (projectCards.length) {
+                    const ptProjects = [
+                        ['Pipeline DevSecOps Docker + Gitea', 'Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado.'],
+                        ['Data Engineering Netflix', 'Projeto de engenharia de dados para análise do catálogo Netflix. ETL completo com processamento de big data, análise exploratória e visualizações interativas.'],
+                        ['Nginx Monitor Discord', 'Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes.'],
+                        ['Tour4Friends Analytics - Data Warehouse', 'DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema).'],
+                        ['Pipeline CI/CD com GitHub Actions, ArgoCD e K8s', 'Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD.'],
+                        ['AWS Cloud Practitioner Brasil', 'Repositório colaborativo em PT-BR com trilha de estudos, resumos e materiais para certificação AWS Cloud Practitioner (CLF-C02).'],
+                    ];
+                    const enProjects = [
+                        ['DevSecOps Pipeline Docker + Gitea', 'Complete CI/CD pipeline implementing DevSecOps practices with Docker and Gitea. Includes build automation, security testing and automated deploy.'],
+                        ['Data Engineering Netflix', 'Data engineering project to analyze the Netflix catalog. End-to-end ETL with big data processing, exploratory analysis and interactive visualizations.'],
+                        ['Nginx Monitor Discord', 'Nginx monitoring system with automated notifications via Discord. Collects real-time metrics, detects anomalies and sends smart alerts.'],
+                        ['Tour4Friends Analytics - Data Warehouse', 'Data Warehouse with dimensional modeling, PL/pgSQL automation, governance and auditing for BI analyses (Star Schema).'],
+                        ['CI/CD Pipeline with GitHub Actions, ArgoCD and K8s', 'GitOps pipeline for FastAPI with build/test, push to Docker Hub and declarative deploy to Kubernetes via ArgoCD.'],
+                        ['AWS Cloud Practitioner Brazil', 'Collaborative PT-BR repository with study track, summaries and materials for AWS Cloud Practitioner (CLF-C02) certification.'],
+                    ];
+                    const projData = lang === 'en' ? enProjects : ptProjects;
+                    projectCards.forEach((card, i) => {
+                        const info = card.querySelector('.project-info');
+                        if (!info || !projData[i]) return;
+                        const h3 = info.querySelector('h3');
+                        const p = info.querySelector('p');
+                        if (h3) h3.textContent = projData[i][0];
+                        if (p) p.textContent = projData[i][1];
+                    });
+                }
+
+                // Project overlay buttons "Ver Código" -> "View Code"
+                document.querySelectorAll('.project-overlay .btn-action').forEach(a => {
+                    const parts = a.innerHTML.split('</i>');
+                    if (parts.length >= 2) {
+                        a.innerHTML = parts[0] + '</i>\n                                ' + (lang === 'en' ? 'View Code' : 'Ver Código');
+                    }
+                });
+            }
+
+            function setLang(lang) {
+                const current = document.documentElement.getAttribute('lang') || 'pt-BR';
+                if ((lang === 'en' && current.startsWith('en')) || (lang === 'pt' && current.startsWith('pt'))) return;
+                if (lang === 'en') {
+                    replaceInTextNodes(document.body, dictPTtoEN);
+                    document.documentElement.setAttribute('lang', 'en');
+                    btn.textContent = 'PT';
+                    applyStructured('en');
+                    if (window.setTypingTexts) window.setTypingTexts('en');
+                } else {
+                    replaceInTextNodes(document.body, dictENtoPT);
+                    document.documentElement.setAttribute('lang', 'pt-BR');
+                    btn.textContent = 'EN';
+                    applyStructured('pt');
+                    if (window.setTypingTexts) window.setTypingTexts('pt');
+                }
+                localStorage.setItem('site-lang', lang);
+            }
+
+            // Initialize from storage
+            const saved = localStorage.getItem('site-lang') || 'pt';
+            setLang(saved);
+
+            btn.addEventListener('click', () => {
+                const next = (localStorage.getItem('site-lang') || 'pt') === 'pt' ? 'en' : 'pt';
+                setLang(next);
+            });
+        })();
+    </script>
 </html>
