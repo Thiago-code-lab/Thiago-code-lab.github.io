@@ -483,8 +483,7 @@
         .timeline::before {
             content: '';
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 20px;
             width: 2px;
             height: 100%;
             background: var(--gradient);
@@ -505,37 +504,27 @@
 
         .timeline-content {
             position: relative;
-            width: calc(50% - 40px);
+            width: calc(100% - 80px);
             padding: 30px;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 2px solid var(--glass-border);
             border-radius: 16px;
             transition: var(--transition);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: auto;
+            margin-left: 80px;
         }
 
         .timeline-content::before {
             content: '';
             position: absolute;
             top: 40px;
+            left: -60px;
             width: 20px;
             height: 20px;
             background: var(--primary);
             border: 3px solid var(--secondary);
             border-radius: 50%;
             box-shadow: 0 0 20px var(--primary);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            left: -60px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            right: -60px;
         }
 
         .timeline-content:hover {
@@ -1187,9 +1176,9 @@
             <div class="timeline">
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <span class="timeline-date">2025 - Atual</span>
-                        <h3>Estagiário DevSecOps</h3>
-                        <p><strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code.</p>
+                        <span class="timeline-date">2023 - 2024</span>
+                        <h3>Técnico em Marketing</h3>
+                        <p><strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica.</p>
                     </div>
                 </article>
 
@@ -1203,9 +1192,9 @@
 
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <span class="timeline-date">2023 - 2024</span>
-                        <h3>Técnico em Marketing</h3>
-                        <p><strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica.</p>
+                        <span class="timeline-date">2025 - Atual</span>
+                        <h3>Estagiário DevSecOps</h3>
+                        <p><strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code.</p>
                     </div>
                 </article>
             </div>
