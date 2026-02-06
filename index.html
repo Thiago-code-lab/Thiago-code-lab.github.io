@@ -160,6 +160,7 @@
             align-items: center;
             padding: 15px 0;
             position: relative;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -187,6 +188,17 @@
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Esconder botões duplicados do mobile no desktop */
+        .nav-right > .nav-buttons {
+            display: none;
         }
 
         .nav-links {
@@ -1048,6 +1060,16 @@
                 display: flex;
             }
 
+            /* Mostrar botões fora do menu hambúrguer no mobile */
+            .nav-right > .nav-buttons {
+                display: flex;
+            }
+
+            /* Esconder botões dentro do menu hambúrguer */
+            .nav-links .nav-buttons {
+                display: none !important;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1068,10 +1090,10 @@
                 right: 0;
             }
 
-            .nav-links li:last-child {
-                margin-top: 20px;
-                padding-top: 20px;
-                border-top: 1px solid var(--glass-border);
+            /* Manter os botões visíveis fora do menu */
+            .nav-right {
+                position: relative;
+                z-index: 1100;
             }
 
             .home-content {
@@ -1143,6 +1165,11 @@
 
             .navbar {
                 padding: 12px 0;
+                gap: 10px;
+            }
+
+            .nav-right {
+                gap: 8px;
             }
 
             .logo {
@@ -1159,8 +1186,12 @@
             }
 
             .lang-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+
+            .nav-buttons {
+                gap: 8px;
             }
 
             .section-title {
@@ -1282,6 +1313,24 @@
 
             .logo-text {
                 display: none;
+            }
+
+            .theme-toggle {
+                width: 38px;
+                height: 38px;
+            }
+
+            .theme-toggle i {
+                font-size: 1rem;
+            }
+
+            .lang-btn {
+                padding: 6px 8px;
+                font-size: 0.7rem;
+            }
+
+            .nav-buttons {
+                gap: 6px;
             }
 
             .section-title {
@@ -1559,7 +1608,7 @@
                         <li><a href="#cursos">Cursos</a></li>
                         <li><a href="#projetos">Projetos</a></li>
                         <li><a href="#contato">Contato</a></li>
-                        <li style="display: flex; gap: 10px; align-items: center;">
+                        <li class="nav-buttons" style="display: flex; gap: 10px; align-items: center;">
                             <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
                                 <i class="fas fa-moon"></i>
                             </button>
@@ -1568,12 +1617,22 @@
                             </button>
                         </li>
                     </ul>
-                </div>
-
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    
+                    <!-- Botões sempre visíveis no mobile -->
+                    <div class="nav-buttons">
+                        <button class="theme-toggle" id="themeToggleMobile" aria-label="Alternar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="lang-toggle-mobile" class="lang-btn" aria-label="Alternar idioma">
+                            <span>EN</span>
+                        </button>
+                    </div>
+                    
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -2080,20 +2139,27 @@
 
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
         const themeIcon = themeToggle.querySelector('i');
+        const themeIconMobile = themeToggleMobile.querySelector('i');
         const savedTheme = localStorage.getItem('theme') || 'dark';
         
         document.documentElement.setAttribute('data-theme', savedTheme);
         themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        themeIconMobile.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 
-        themeToggle.addEventListener('click', function() {
+        function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme');
             const newTheme = current === 'dark' ? 'light' : 'dark';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        });
+            themeIconMobile.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
 
         // Scroll Progress
         window.addEventListener('scroll', function() {
@@ -2134,19 +2200,19 @@
 
         // Typing Effect
         const textsPT = [
+            'AWS Certificado.', 
             'Analista de Cloud Jr.', 
-            'AWS Certified', 
-            'DevOps & Automação', 
-            'FinOps & IaC', 
-            'Dados & Big Data'
+            'DevOps & Automação de Processos', 
+            'FinOps & Infraestrutura como Código', 
+            'Engenharia de Dados e Big Data'
         ];
 
         const textsEN = [
+            'AWS Certified.', 
             'Cloud Analyst Jr.', 
-            'AWS Certified', 
-            'DevOps & Automation', 
-            'FinOps & IaC', 
-            'Data & Big Data'
+            'DevOps & Process Automation', 
+            'FinOps & Infrastructure as Code', 
+            'Data Engineering & Big Data'
         ];
         
         let typingTexts = textsPT.slice();
@@ -2261,14 +2327,20 @@
 
         // Language Toggle
         const langBtn = document.getElementById('lang-toggle');
+        const langBtnMobile = document.getElementById('lang-toggle-mobile');
         let currentLang = 'pt';
 
-        langBtn.addEventListener('click', function() {
+        function toggleLanguage() {
             currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            langBtn.querySelector('span').textContent = currentLang === 'pt' ? 'EN' : 'PT';
+            const newText = currentLang === 'pt' ? 'EN' : 'PT';
+            langBtn.querySelector('span').textContent = newText;
+            langBtnMobile.querySelector('span').textContent = newText;
             typingTexts = currentLang === 'pt' ? textsPT : textsEN;
             textIndex = 0;
-        });
+        }
+
+        langBtn.addEventListener('click', toggleLanguage);
+        langBtnMobile.addEventListener('click', toggleLanguage);
     </script>
 </body>
 </html>
