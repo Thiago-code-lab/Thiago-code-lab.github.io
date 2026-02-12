@@ -15,33 +15,49 @@
     <style>
         /* Reset e Variáveis */
         :root {
-            --primary: #00f0ff;
-            --secondary: #0a0e27;
-            --dark: #050816;
-            --light: #e8f1ff;
-            --gray: #8892b0;
-            --accent: #7c3aed;
-            --accent-2: #f97316;
+            /* Dark Mode - Nova Paleta */
+            --color1: #070705;
+            --color2: #3e4b51;
+            --color3: #6f737e;
+            --color4: #89a09a;
+            --color5: #c1c0ae;
+            
+            --primary: #a8d5ba;
+            --secondary: #070705;
+            --dark: #070705;
+            --light: #f0f0f0;
+            --gray: #b0b0b0;
+            --accent: #a8d5ba;
+            --accent-2: #3e4b51;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow: 0 20px 60px rgba(0, 240, 255, 0.15);
-            --gradient: linear-gradient(135deg, #00f0ff 0%, #7c3aed 50%, #f97316 100%);
-            --glass-bg: rgba(10, 14, 39, 0.6);
-            --glass-border: rgba(0, 240, 255, 0.2);
-            --grid-color: rgba(0, 240, 255, 0.05);
+            --shadow: 0 20px 60px rgba(168, 213, 186, 0.25);
+            --gradient: linear-gradient(135deg, #a8d5ba 0%, #89a09a 50%, #6f737e 100%);
+            --glass-bg: rgba(62, 75, 81, 0.3);
+            --glass-border: rgba(168, 213, 186, 0.4);
+            --grid-color: rgba(168, 213, 186, 0.1);
+            --hover-glow: rgba(168, 213, 186, 0.5);
         }
 
         [data-theme="light"] {
-            --primary: #0066ff;
-            --secondary: #f8fafc;
+            /* Light Mode - Nova Paleta */
+            --color1: #44749d;
+            --color2: #c6d4e1;
+            --color3: #ffffff;
+            --color4: #ebe7e0;
+            --color5: #bdb8ad;
+            
+            --primary: #44749d;
+            --secondary: #ffffff;
             --dark: #ffffff;
-            --light: #0f172a;
-            --gray: #475569;
-            --accent: #7c3aed;
-            --accent-2: #f97316;
-            --shadow: 0 20px 60px rgba(0, 102, 255, 0.1);
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-border: rgba(0, 102, 255, 0.2);
-            --grid-color: rgba(0, 102, 255, 0.03);
+            --light: #44749d;
+            --gray: #bdb8ad;
+            --accent: #44749d;
+            --accent-2: #c6d4e1;
+            --shadow: 0 20px 60px rgba(68, 116, 157, 0.15);
+            --glass-bg: rgba(198, 212, 225, 0.4);
+            --glass-border: rgba(68, 116, 157, 0.3);
+            --grid-color: rgba(68, 116, 157, 0.06);
+            --hover-glow: rgba(68, 116, 157, 0.3);
         }
 
         * {
@@ -74,6 +90,12 @@
             background-size: 50px 50px;
             z-index: 0;
             pointer-events: none;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
 
         body::after {
@@ -81,10 +103,16 @@
             position: fixed;
             inset: 0;
             background: 
-                radial-gradient(circle at 20% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 20% 20%, var(--hover-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--hover-glow) 0%, transparent 50%);
             z-index: 0;
             pointer-events: none;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         /* Loading Screen */
@@ -98,12 +126,17 @@
             align-items: center;
             gap: 20px;
             z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            opacity: 1;
+            visibility: visible;
+            /* CSS Animation como fallback - esconde após 0.8s */
+            animation: hideLoading 0.3s ease 0.8s forwards;
         }
 
         .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            display: none !important;
+            pointer-events: none !important;
         }
 
         .loader {
@@ -114,6 +147,7 @@
             border-right: 3px solid var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            filter: drop-shadow(0 0 10px var(--primary));
         }
 
         .loading-text {
@@ -121,10 +155,24 @@
             color: var(--primary);
             font-size: 0.9rem;
             letter-spacing: 2px;
+            animation: pulse 1.5s ease-in-out infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        @keyframes hideLoading {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .scroll-progress {
@@ -135,7 +183,7 @@
             height: 3px;
             background: var(--gradient);
             z-index: 1001;
-            box-shadow: 0 0 10px var(--primary);
+            box-shadow: 0 0 15px var(--primary);
         }
 
         header {
@@ -144,10 +192,11 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(7, 7, 5, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
             transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         [data-theme="light"] header {
@@ -175,6 +224,17 @@
         .logo-icon {
             color: var(--primary);
             font-size: 1.5rem;
+            animation: rotateIcon 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+        [data-theme="light"] .logo-icon {
+            filter: none;
+        }
+
+        @keyframes rotateIcon {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
         }
 
         .logo-text {
@@ -196,7 +256,6 @@
             gap: 10px;
         }
 
-        /* Esconder botões duplicados do mobile no desktop */
         .nav-right > .nav-buttons {
             display: none;
         }
@@ -208,7 +267,7 @@
         }
 
         .nav-links a {
-            color: var(--light);
+            color: #e0e0e0;
             font-weight: 500;
             font-size: 0.9rem;
             position: relative;
@@ -216,6 +275,10 @@
             transition: var(--transition);
             font-family: 'JetBrains Mono', monospace;
             text-decoration: none;
+        }
+
+        [data-theme="light"] .nav-links a {
+            color: var(--light);
         }
 
         .nav-links a::before {
@@ -231,6 +294,22 @@
         .nav-links a.active::before {
             opacity: 1;
             left: -25px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -263,12 +342,12 @@
         }
 
         .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 5px 20px var(--hover-glow);
         }
 
         .theme-toggle:hover::before {
-            opacity: 0.1;
+            opacity: 0.2;
         }
 
         .theme-toggle i {
@@ -307,6 +386,7 @@
 
         .lang-btn:hover {
             color: var(--dark);
+            box-shadow: 0 5px 15px var(--hover-glow);
         }
 
         .lang-btn span {
@@ -359,6 +439,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            position: relative;
+            display: inline-block;
         }
 
         #home {
@@ -381,6 +463,11 @@
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .home-text h1 {
+            color: var(--light);
         }
 
         .home-text h1 span {
@@ -448,7 +535,7 @@
 
         .btn:hover {
             color: var(--dark);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px var(--hover-glow);
             transform: translateY(-2px);
         }
 
@@ -470,7 +557,7 @@
             inset: -20px;
             background: var(--gradient);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            opacity: 0.2;
+            opacity: 0.3;
             filter: blur(30px);
             animation: morph 8s ease-in-out infinite;
         }
@@ -482,10 +569,15 @@
             border-radius: 20px;
             border: 3px solid var(--primary);
             box-shadow: 
-                0 0 40px rgba(0, 240, 255, 0.3),
-                inset 0 0 20px rgba(0, 240, 255, 0.1);
+                0 0 40px var(--hover-glow),
+                inset 0 0 20px rgba(137, 160, 154, 0.1);
             position: relative;
             z-index: 1;
+            transition: var(--transition);
+        }
+
+        .home-image:hover img {
+            transform: scale(1.05);
         }
 
         @keyframes morph {
@@ -506,6 +598,7 @@
             width: 2px;
             height: 100%;
             background: var(--gradient);
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .timeline-item {
@@ -544,11 +637,12 @@
             border: 3px solid var(--secondary);
             border-radius: 50%;
             box-shadow: 0 0 20px var(--primary);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+            transform: translateY(-5px) translateX(5px);
+            box-shadow: 0 20px 40px var(--hover-glow);
             border-color: var(--primary);
         }
 
@@ -561,10 +655,14 @@
         }
 
         .timeline-content h3 {
-            color: var(--light);
+            color: #ffffff;
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 8px;
+        }
+
+        [data-theme="light"] .timeline-content h3 {
+            color: var(--light);
         }
 
         .timeline-content p {
@@ -601,13 +699,13 @@
         }
 
         .service-card:hover::before {
-            opacity: 0.05;
+            opacity: 0.1;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 20px 60px var(--hover-glow);
         }
 
         .service-card i {
@@ -619,6 +717,11 @@
             margin-bottom: 18px;
             display: block;
             transition: var(--transition);
+            filter: drop-shadow(0 0 15px var(--primary)) brightness(1.3);
+        }
+
+        [data-theme="light"] .service-card i {
+            filter: drop-shadow(0 0 10px var(--primary)) brightness(1);
         }
 
         .service-card:hover i {
@@ -629,9 +732,13 @@
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: var(--light);
+            color: #ffffff;
             position: relative;
             z-index: 1;
+        }
+
+        [data-theme="light"] .service-card h3 {
+            color: var(--light);
         }
 
         .service-card p {
@@ -678,7 +785,7 @@
         .course-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 20px 60px var(--hover-glow);
         }
 
         .course-card i {
@@ -689,18 +796,32 @@
             color: transparent;
             margin-bottom: 18px;
             display: block;
+            filter: drop-shadow(0 0 12px var(--primary)) brightness(1.3);
+        }
+
+        [data-theme="light"] .course-card i {
+            filter: drop-shadow(0 0 8px var(--primary)) brightness(1);
         }
 
         .course-card h3 {
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .course-card h3 {
             color: var(--light);
         }
 
         .course-card h3 a {
             color: inherit;
             text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .course-card h3 a:hover {
+            color: var(--primary);
         }
 
         .course-card p {
@@ -712,13 +833,18 @@
 
         .course-date {
             display: inline-block;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--primary);
+            background: rgba(168, 213, 186, 0.2);
+            color: #d0f0d0;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
+        }
+
+        [data-theme="light"] .course-date {
+            background: rgba(68, 116, 157, 0.15);
+            color: #44749d;
         }
 
         .project-filters {
@@ -747,7 +873,8 @@
             background: var(--primary);
             color: var(--dark);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px var(--hover-glow);
+            transform: translateY(-2px);
         }
 
         .projects-grid {
@@ -768,7 +895,7 @@
         .project-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 20px 60px var(--hover-glow);
         }
 
         .project-image {
@@ -787,6 +914,11 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            filter: drop-shadow(0 0 15px var(--primary)) brightness(1.3);
+        }
+
+        [data-theme="light"] .project-icon {
+            filter: drop-shadow(0 0 10px var(--primary)) brightness(1);
         }
 
         .project-overlay {
@@ -824,6 +956,7 @@
         .btn-action:hover {
             background: var(--primary);
             color: var(--dark);
+            box-shadow: 0 5px 15px var(--hover-glow);
         }
 
         .project-info {
@@ -834,6 +967,10 @@
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .project-info h3 {
             color: var(--light);
         }
 
@@ -857,9 +994,15 @@
             font-size: 0.75rem;
             font-weight: 600;
             font-family: 'JetBrains Mono', monospace;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            background: rgba(168, 213, 186, 0.2);
+            color: #d0f0d0;
+            border: 1px solid rgba(168, 213, 186, 0.4);
+        }
+
+        [data-theme="light"] .tech-badge {
+            background: rgba(68, 116, 157, 0.15);
+            color: #44749d;
+            border: 1px solid rgba(68, 116, 157, 0.3);
         }
 
         .project-stats {
@@ -906,10 +1049,14 @@
             font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 25px;
-            background: var(--gradient);
+            background: linear-gradient(135deg, #d0f0d0 0%, #a8d5ba 50%, #89a09a 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+        }
+
+        [data-theme="light"] .contact-channels h3 {
+            background: var(--gradient);
         }
 
         .channel {
@@ -920,7 +1067,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--light);
+            color: #e8e8e8;
             transition: var(--transition);
             padding: 12px;
             border-radius: 12px;
@@ -930,9 +1077,14 @@
             font-size: 0.95rem;
         }
 
+        [data-theme="light"] .channel-link {
+            color: var(--light);
+        }
+
         .channel-link:hover {
             border-color: var(--primary);
             transform: translateX(10px);
+            box-shadow: 0 5px 15px var(--hover-glow);
         }
 
         .channel-link i {
@@ -946,6 +1098,11 @@
             color: var(--dark);
             font-size: 1.1rem;
             flex-shrink: 0;
+            filter: brightness(1.2);
+        }
+
+        [data-theme="light"] .channel-link i {
+            filter: brightness(1);
         }
 
         .social-links {
@@ -973,7 +1130,7 @@
             background: var(--gradient);
             color: var(--dark);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px var(--hover-glow);
         }
 
         .copyright {
@@ -1040,7 +1197,7 @@
             opacity: 0;
             visibility: hidden;
             transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 10px 30px var(--hover-glow);
             z-index: 999;
         }
 
@@ -1050,7 +1207,7 @@
         }
 
         #backToTop:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
 
         /* ====== RESPONSIVIDADE MOBILE ====== */
@@ -1060,12 +1217,10 @@
                 display: flex;
             }
 
-            /* Mostrar botões fora do menu hambúrguer no mobile */
             .nav-right > .nav-buttons {
                 display: flex;
             }
 
-            /* Esconder botões dentro do menu hambúrguer */
             .nav-links .nav-buttons {
                 display: none !important;
             }
@@ -1077,7 +1232,7 @@
                 width: 85%;
                 max-width: 350px;
                 height: 100vh;
-                background: rgba(10, 14, 39, 0.98);
+                background: rgba(7, 7, 5, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 80px 25px 30px;
@@ -1086,11 +1241,14 @@
                 gap: 15px;
             }
 
+            [data-theme="light"] .nav-links {
+                background: rgba(255, 255, 255, 0.98);
+            }
+
             .nav-links.active {
                 right: 0;
             }
 
-            /* Manter os botões visíveis fora do menu */
             .nav-right {
                 position: relative;
                 z-index: 1100;
@@ -1100,6 +1258,10 @@
                 grid-template-columns: 1fr;
                 text-align: center;
                 gap: 40px;
+            }
+
+            .typing-text {
+                justify-content: center;
             }
 
             .home-text h1 {
@@ -1211,6 +1373,7 @@
             .typing-text {
                 font-size: 1rem;
                 min-height: 40px;
+                justify-content: center;
             }
 
             .btn {
@@ -1349,6 +1512,7 @@
             .typing-text {
                 font-size: 0.9rem;
                 min-height: 35px;
+                justify-content: center;
             }
 
             .btn {
@@ -1542,6 +1706,7 @@
 
             .typing-text {
                 font-size: 0.85rem;
+                justify-content: center;
             }
 
             .home-image {
@@ -1560,7 +1725,6 @@
             }
         }
 
-        /* Ajustes para landscape em mobile */
         @media (max-height: 500px) and (orientation: landscape) {
             #home {
                 min-height: auto;
@@ -1581,14 +1745,27 @@
             .home-text {
                 text-align: left;
             }
+
+            .typing-text {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
 <body>
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
-        <div class="loading-text">LOADING...</div>
+        <div class="loading-text" data-pt="CARREGANDO..." data-en="LOADING...">CARREGANDO...</div>
     </div>
+    <script>
+        // Remover loading screen imediatamente (300ms)
+        setTimeout(function() {
+            var ls = document.getElementById('loadingScreen');
+            if (ls) {
+                ls.className = 'loading-screen hidden';
+            }
+        }, 300);
+    </script>
 
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -1602,12 +1779,12 @@
                 
                 <div class="nav-right">
                     <ul class="nav-links" id="navLinks">
-                        <li><a href="#home" class="active">Início</a></li>
-                        <li><a href="#trajetoria">Trajetória</a></li>
-                        <li><a href="#servicos">Serviços</a></li>
-                        <li><a href="#cursos">Cursos</a></li>
-                        <li><a href="#projetos">Projetos</a></li>
-                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#home" class="active" data-pt="Início" data-en="Home">Início</a></li>
+                        <li><a href="#trajetoria" data-pt="Trajetória" data-en="Journey">Trajetória</a></li>
+                        <li><a href="#servicos" data-pt="Serviços" data-en="Services">Serviços</a></li>
+                        <li><a href="#cursos" data-pt="Cursos" data-en="Courses">Cursos</a></li>
+                        <li><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a></li>
+                        <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
                         <li class="nav-buttons" style="display: flex; gap: 10px; align-items: center;">
                             <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
                                 <i class="fas fa-moon"></i>
@@ -1618,7 +1795,6 @@
                         </li>
                     </ul>
                     
-                    <!-- Botões sempre visíveis no mobile -->
                     <div class="nav-buttons">
                         <button class="theme-toggle" id="themeToggleMobile" aria-label="Alternar tema">
                             <i class="fas fa-moon"></i>
@@ -1642,12 +1818,12 @@
         <div class="container">
             <div class="home-content">
                 <div class="home-text fade-in">
-                    <h1>Olá, eu sou <span>Thiago Cardoso</span></h1>
+                    <h1 data-pt="Olá, eu sou <span>Thiago Cardoso</span>" data-en="Hello, I'm <span>Thiago Cardoso</span>">Olá, eu sou <span>Thiago Cardoso</span></h1>
                     <div class="typing-text">
                         <span id="typing-content">Estagiario DevSecOps</span>
                     </div>
                     <button class="btn" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">
-                        <span>Entre em Contato</span>
+                        <span data-pt="Entre em Contato" data-en="Get in Touch">Entre em Contato</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -1660,37 +1836,37 @@
 
     <section id="trajetoria">
         <div class="container">
-            <h2 class="section-title">Minha <span>Trajetória</span></h2>
+            <h2 class="section-title"><span data-pt="Minha Trajetória" data-en="My Journey">Minha Trajetória</span></h2>
             <div class="timeline">
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
                         <span class="timeline-date">2023 - 2024</span>
-                        <h3>Técnico em Marketing</h3>
-                        <p><strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica.</p>
+                        <h3 data-pt="Técnico em Marketing" data-en="Marketing Technician">Técnico em Marketing</h3>
+                        <p data-pt="<strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica." data-en="<strong>Etec Carlos de Campos</strong> – Digital marketing, SEO and strategic communication."><strong>Etec Carlos de Campos</strong> – Marketing digital, SEO e comunicação estratégica.</p>
                     </div>
                 </article>
 
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
                         <span class="timeline-date">2024 - 2027</span>
-                        <h3>Graduação em Big Data para Negócios</h3>
-                        <p><strong>FATEC</strong> – Análise de dados, cloud computing e inteligência de negócios.</p>
+                        <h3 data-pt="Graduação em Big Data para Negócios" data-en="Bachelor's Degree in Big Data for Business">Graduação em Big Data para Negócios</h3>
+                        <p data-pt="<strong>FATEC</strong> – Análise de dados, cloud computing e inteligência de negócios." data-en="<strong>FATEC</strong> – Data analysis, cloud computing and business intelligence."><strong>FATEC</strong> – Análise de dados, cloud computing e inteligência de negócios.</p>
                     </div>
                 </article>
 
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
                         <span class="timeline-date">2025</span>
-                        <h3>Estagiário DevSecOps</h3>
-                        <p><strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code.</p>
+                        <h3 data-pt="Estagiário DevSecOps" data-en="DevSecOps Intern">Estagiário DevSecOps</h3>
+                        <p data-pt="<strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code." data-en="<strong>Compass UOL</strong> – Working with AWS, infrastructure automation, CI/CD and Security as Code."><strong>Compass UOL</strong> – Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code.</p>
                     </div>
                 </article>
 
                 <article class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <span class="timeline-date">2026 - Atual</span>
-                        <h3>Analista de Cloud Jr.</h3>
-                        <p><strong>Pixxel</strong> – Evolução de ambientes AWS, implementação de FinOps (otimização de custos), automação e projetos de dados.</p>
+                        <span class="timeline-date" data-pt="2026 - Atual" data-en="2026 - Present">2026 - Atual</span>
+                        <h3 data-pt="Analista de Cloud Jr." data-en="Jr. Cloud Analyst">Analista de Cloud Jr.</h3>
+                        <p data-pt="<strong>Pixxel</strong> – Evolução de ambientes AWS, implementação de FinOps (otimização de custos), automação e projetos de dados." data-en="<strong>Pixxel</strong> – AWS environment evolution, FinOps implementation (cost optimization), automation and data projects."><strong>Pixxel</strong> – Evolução de ambientes AWS, implementação de FinOps (otimização de custos), automação e projetos de dados.</p>
                     </div>
                 </article>
             </div>
@@ -1699,22 +1875,22 @@
 
     <section id="servicos">
         <div class="container">
-            <h2 class="section-title">O que eu <span>faço</span></h2>
+            <h2 class="section-title"><span data-pt="O que eu faço" data-en="What I Do">O que eu faço</span></h2>
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <i class="fas fa-cloud"></i>
                     <h3>Cloud & DevSecOps</h3>
-                    <p>Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.</p>
+                    <p data-pt="Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida." data-en="Cloud infrastructure (AWS), CI/CD, IaC automation and security practices in the lifecycle.">Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.</p>
                 </div>
                 <div class="service-card fade-in">
                     <i class="fas fa-database"></i>
-                    <h3>Big Data & Análise</h3>
-                    <p>Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.</p>
+                    <h3 data-pt="Big Data & Análise" data-en="Big Data & Analysis">Big Data & Análise</h3>
+                    <p data-pt="Tratamento de grandes volumes de dados, insights de negócio e integração em cloud." data-en="Processing large data volumes, business insights and cloud integration.">Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.</p>
                 </div>
                 <div class="service-card fade-in">
                     <i class="fas fa-shield-alt"></i>
-                    <h3>Segurança da Informação</h3>
-                    <p>Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.</p>
+                    <h3 data-pt="Segurança da Informação" data-en="Information Security">Segurança da Informação</h3>
+                    <p data-pt="Proteção de sistemas, governança de dados, monitoramento e defesa cibernética." data-en="System protection, data governance, monitoring and cyber defense.">Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.</p>
                 </div>
             </div>
         </div>
@@ -1722,7 +1898,7 @@
 
     <section id="cursos">
         <div class="container">
-            <h2 class="section-title">Cursos e <span>Certificações</span></h2>
+            <h2 class="section-title"><span data-pt="Cursos e Certificações" data-en="Courses and Certifications">Cursos e Certificações</span></h2>
             <div class="courses-grid">
                 <div class="course-card fade-in">
                     <i class="fab fa-aws"></i>
@@ -1733,13 +1909,13 @@
                 <div class="course-card fade-in">
                     <i class="fas fa-network-wired"></i>
                     <h3>Cisco</h3>
-                    <p>Conceitos Básicos de Redes</p>
+                    <p data-pt="Conceitos Básicos de Redes" data-en="Networking Basics">Conceitos Básicos de Redes</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card fade-in">
                     <i class="fas fa-network-wired"></i>
                     <h3>Cisco</h3>
-                    <p>Gerenciamento de Ameaças Cibernéticas</p>
+                    <p data-pt="Gerenciamento de Ameaças Cibernéticas" data-en="Cyber Threat Management">Gerenciamento de Ameaças Cibernéticas</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card fade-in">
@@ -1751,19 +1927,19 @@
                 <div class="course-card fade-in">
                     <i class="fab fa-docker"></i>
                     <h3>Docker & Kubernetes</h3>
-                    <p>Conteinerização e Orquestração</p>
+                    <p data-pt="Conteinerização e Orquestração" data-en="Containerization and Orchestration">Conteinerização e Orquestração</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card fade-in">
                     <i class="fab fa-google"></i>
                     <h3><a href="https://www.credly.com/badges/67905884-c6cb-45f4-a35f-41cbece96106/public_url" target="_blank" rel="noopener">Google</a></h3>
-                    <p>Certificado Profissional de Análise de Dados do Google</p>
+                    <p data-pt="Certificado Profissional de Análise de Dados do Google" data-en="Google Data Analytics Professional Certificate">Certificado Profissional de Análise de Dados do Google</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card fade-in">
                     <i class="fab fa-google"></i>
                     <h3>Google Cloud</h3>
-                    <p>Inteligência Artificial</p>
+                    <p data-pt="Inteligência Artificial" data-en="Artificial Intelligence">Inteligência Artificial</p>
                     <span class="course-date">2024</span>
                 </div>
                 <div class="course-card fade-in">
@@ -1774,14 +1950,14 @@
                 </div>
                 <div class="course-card fade-in">
                     <i class="fas fa-tasks"></i>
-                    <h3>Métodos Ágeis</h3>
-                    <p>Fundamentos do SCRUM</p>
+                    <h3 data-pt="Métodos Ágeis" data-en="Agile Methods">Métodos Ágeis</h3>
+                    <p data-pt="Fundamentos do SCRUM" data-en="SCRUM Fundamentals">Fundamentos do SCRUM</p>
                     <span class="course-date">2025</span>
                 </div>
                 <div class="course-card fade-in">
                     <i class="fas fa-shield-alt"></i>
                     <h3>SENAI São Paulo</h3>
-                    <p>Prevenção e Reação aos Incidentes Cibernéticos</p>
+                    <p data-pt="Prevenção e Reação aos Incidentes Cibernéticos" data-en="Prevention and Response to Cyber Incidents">Prevenção e Reação aos Incidentes Cibernéticos</p>
                     <span class="course-date">2025</span>
                 </div>
             </div>
@@ -1790,13 +1966,13 @@
 
     <section id="projetos">
         <div class="container">
-            <h2 class="section-title">Meus <span>Projetos</span></h2>
+            <h2 class="section-title"><span data-pt="Meus Projetos" data-en="My Projects">Meus Projetos</span></h2>
             
             <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn active" data-filter="all" data-pt="Todos" data-en="All">Todos</button>
                 <button class="filter-btn" data-filter="devsecops">DevSecOps</button>
-                <button class="filter-btn" data-filter="data">Data Engineering</button>
-                <button class="filter-btn" data-filter="monitoring">Monitoring</button>
+                <button class="filter-btn" data-filter="data" data-pt="Data Engineering" data-en="Data Engineering">Data Engineering</button>
+                <button class="filter-btn" data-filter="monitoring" data-pt="Monitoring" data-en="Monitoring">Monitoring</button>
             </div>
 
             <div class="projects-grid">
@@ -1806,13 +1982,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/pipeline-devsecops-docker-gitea" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Pipeline DevSecOps Docker + Gitea</h3>
-                        <p>Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado.</p>
+                        <p data-pt="Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado." data-en="Complete CI/CD pipeline implementing DevSecOps practices with Docker and Gitea. Includes build automation, security testing and automated deployment.">Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">Docker</span>
                             <span class="tech-badge">Gitea</span>
@@ -1837,13 +2013,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/data-engineering-netflix" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Data Engineering Netflix</h3>
-                        <p>Projeto de engenharia de dados para análise do catálogo Netflix. ETL completo com processamento de big data, análise exploratória e visualizações interativas.</p>
+                        <p data-pt="Projeto de engenharia de dados para análise do catálogo Netflix. ETL completo com processamento de big data, análise exploratória e visualizações interativas." data-en="Data engineering project for Netflix catalog analysis. Complete ETL with big data processing, exploratory analysis and interactive visualizations.">Projeto de engenharia de dados para análise do catálogo Netflix. ETL completo com processamento de big data, análise exploratória e visualizações interativas.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">Python</span>
                             <span class="tech-badge">PostgreSQL</span>
@@ -1867,13 +2043,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/nginx-monitor-discord" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Nginx Monitor Discord</h3>
-                        <p>Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes.</p>
+                        <p data-pt="Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes." data-en="Nginx monitoring system with automated Discord notifications. Collects real-time metrics, detects anomalies and sends intelligent alerts.">Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">Nginx</span>
                             <span class="tech-badge">Python</span>
@@ -1897,13 +2073,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/tour4friends-analytics" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Tour4Friends Analytics - Data Warehouse</h3>
-                        <p>DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema).</p>
+                        <p data-pt="DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema)." data-en="DW with dimensional modeling, PL/pgSQL automation, governance and auditing for BI analysis (Star Schema).">DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema).</p>
                         <div class="tech-stack">
                             <span class="tech-badge">PostgreSQL</span>
                             <span class="tech-badge">PL/pgSQL</span>
@@ -1926,13 +2102,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/compass-python-api-ci-cd" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Pipeline CI/CD com GitHub Actions, ArgoCD e K8s</h3>
-                        <p>Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD.</p>
+                        <h3 data-pt="Pipeline CI/CD com GitHub Actions, ArgoCD e K8s" data-en="CI/CD Pipeline with GitHub Actions, ArgoCD and K8s">Pipeline CI/CD com GitHub Actions, ArgoCD e K8s</h3>
+                        <p data-pt="Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD." data-en="GitOps pipeline for FastAPI with build/test, Docker Hub push and declarative deployment on Kubernetes via ArgoCD.">Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">GitHub Actions</span>
                             <span class="tech-badge">ArgoCD</span>
@@ -1956,13 +2132,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/aws-cloud-practitioner-brasil" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>AWS Cloud Practitioner Brasil</h3>
-                        <p>Repositório colaborativo em PT-BR com trilha de estudos, resumos e materiais para certificação AWS Cloud Practitioner (CLF-C02).</p>
+                        <p data-pt="Repositório colaborativo em PT-BR com trilha de estudos, resumos e materiais para certificação AWS Cloud Practitioner (CLF-C02)." data-en="Collaborative repository in PT-BR with study trail, summaries and materials for AWS Cloud Practitioner certification (CLF-C02).">Repositório colaborativo em PT-BR com trilha de estudos, resumos e materiais para certificação AWS Cloud Practitioner (CLF-C02).</p>
                         <div class="tech-stack">
                             <span class="tech-badge">AWS</span>
                             <span class="tech-badge">Docs</span>
@@ -1985,13 +2161,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/aws-streaming-fraud-detection" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>AWS Fraud Detection Pipeline</h3>
-                        <p>Pipeline de dados serverless construído na AWS utilizando IaC para detecção automatizada de fraudes em transações financeiras com foco em segurança e escalabilidade.</p>
+                        <p data-pt="Pipeline de dados serverless construído na AWS utilizando IaC para detecção automatizada de fraudes em transações financeiras com foco em segurança e escalabilidade." data-en="Serverless data pipeline built on AWS using IaC for automated fraud detection in financial transactions with focus on security and scalability.">Pipeline de dados serverless construído na AWS utilizando IaC para detecção automatizada de fraudes em transações financeiras com foco em segurança e escalabilidade.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">AWS</span>
                             <span class="tech-badge">Terraform</span>
@@ -2017,13 +2193,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/projeto-phoenix" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Projeto Phoenix</h3>
-                        <p>Plataforma pessoal de transformação para organizar vida, acompanhar crescimento e alcançar objetivos. Sistema completo com biblioteca, academia, finanças, metas, saúde e diário.</p>
+                        <h3 data-pt="Projeto Phoenix" data-en="Phoenix Project">Projeto Phoenix</h3>
+                        <p data-pt="Plataforma pessoal de transformação para organizar vida, acompanhar crescimento e alcançar objetivos. Sistema completo com biblioteca, academia, finanças, metas, saúde e diário." data-en="Personal transformation platform to organize life, track growth and achieve goals. Complete system with library, gym, finances, goals, health and journal.">Plataforma pessoal de transformação para organizar vida, acompanhar crescimento e alcançar objetivos. Sistema completo com biblioteca, academia, finanças, metas, saúde e diário.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">Python</span>
                             <span class="tech-badge">Streamlit</span>
@@ -2047,13 +2223,13 @@
                         <div class="project-overlay">
                             <a href="https://github.com/Thiago-code-lab/wordpress-aws-environment-docs" target="_blank" class="btn-action">
                                 <i class="fab fa-github"></i>
-                                Ver Código
+                                <span data-pt="Ver Código" data-en="View Code">Ver Código</span>
                             </a>
                         </div>
                     </div>
                     <div class="project-info">
-                        <h3>Infraestrutura WordPress - AWS</h3>
-                        <p>Infraestrutura completa e escalável para WordPress na AWS com Docker, Auto Scaling, Multi-AZ deployment e alta disponibilidade. Implementação seguindo melhores práticas de segurança e cloud.</p>
+                        <h3 data-pt="Infraestrutura WordPress - AWS" data-en="WordPress Infrastructure - AWS">Infraestrutura WordPress - AWS</h3>
+                        <p data-pt="Infraestrutura completa e escalável para WordPress na AWS com Docker, Auto Scaling, Multi-AZ deployment e alta disponibilidade. Implementação seguindo melhores práticas de segurança e cloud." data-en="Complete and scalable WordPress infrastructure on AWS with Docker, Auto Scaling, Multi-AZ deployment and high availability. Implementation following best security and cloud practices.">Infraestrutura completa e escalável para WordPress na AWS com Docker, Auto Scaling, Multi-AZ deployment e alta disponibilidade. Implementação seguindo melhores práticas de segurança e cloud.</p>
                         <div class="tech-stack">
                             <span class="tech-badge">AWS</span>
                             <span class="tech-badge">WordPress</span>
@@ -2077,7 +2253,7 @@
 
             <div style="text-align: center; margin-top: 60px;">
                 <a href="https://github.com/Thiago-code-lab" target="_blank" class="btn">
-                    <span>Ver Todos os Projetos</span>
+                    <span data-pt="Ver Todos os Projetos" data-en="View All Projects">Ver Todos os Projetos</span>
                     <i class="fab fa-github"></i>
                 </a>
             </div>
@@ -2088,7 +2264,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="contact-channels">
-                    <h3>Entre em Contato</h3>
+                    <h3 data-pt="Entre em Contato" data-en="Get in Touch">Entre em Contato</h3>
                     <div class="channel">
                         <a href="https://wa.me/5511952069862" target="_blank" class="channel-link">
                             <i class="fab fa-whatsapp"></i>
@@ -2102,9 +2278,9 @@
                         </a>
                     </div>
                     <div class="channel">
-                        <a href="mailto:analyticsdev.thiago@gmail.com" class="channel-link">
+                        <a href="/cdn-cgi/l/email-protection#99f8f7f8f5e0edf0faeafdfcefb7edf1f0f8fef6d9fef4f8f0f5b7faf6f4" class="channel-link">
                             <i class="fas fa-envelope"></i>
-                            <span>analyticsdev.thiago@gmail.com</span>
+                            <span><span class="__cf_email__" data-cfemail="9ffef1fef3e6ebf6fcecfbfae9b1ebf7f6fef8f0dff8f2fef6f3b1fcf0f2">[email&#160;protected]</span></span>
                         </a>
                     </div>
                 </div>
@@ -2120,7 +2296,7 @@
                     </a>
                 </div>
             </div>
-            <p class="copyright">&copy; <span id="current-year"></span> Thiago Cardoso. Todos os direitos reservados.</p>
+            <p class="copyright" data-pt="&copy; <span id='current-year'></span> Thiago Cardoso. Todos os direitos reservados." data-en="&copy; <span id='current-year'></span> Thiago Cardoso. All rights reserved.">&copy; <span id="current-year"></span> Thiago Cardoso. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -2128,14 +2304,57 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        // Loading Screen
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loadingScreen').classList.add('hidden');
-                initAnimations();
-            }, 1000);
-        });
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Traduções
+        const translations = {
+            pt: {
+                typing: [
+                    'AWS Certificado.', 
+                    'Analista de Cloud Jr.', 
+                    'DevOps & Automação de Processos', 
+                    'FinOps & Infraestrutura como Código', 
+                    'Engenharia de Dados e Big Data'
+                ]
+            },
+            en: {
+                typing: [
+                    'AWS Certified.', 
+                    'Jr. Cloud Analyst', 
+                    'DevOps & Process Automation', 
+                    'FinOps & Infrastructure as Code', 
+                    'Data Engineering & Big Data'
+                ]
+            }
+        };
+
+        let currentLang = 'pt';
+        let typingTexts = translations.pt.typing;
+        let textIndex = 0;
+
+        // Função para traduzir elementos
+        function translatePage(lang) {
+            currentLang = lang;
+            typingTexts = translations[lang].typing;
+            
+            // Traduzir todos os elementos com data-pt e data-en
+            document.querySelectorAll('[data-pt][data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (el.tagName === 'H1') {
+                    el.innerHTML = text;
+                } else if (el.tagName === 'P' && text.includes('<strong>')) {
+                    el.innerHTML = text;
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            // Atualizar o texto do typing
+            document.getElementById('typing-content').textContent = typingTexts[0];
+            textIndex = 0;
+
+            // Atualizar o idioma do HTML
+            document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+        }
 
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -2178,7 +2397,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Fechar menu ao clicar em um link
         const navItems = navLinks.querySelectorAll('a');
         navItems.forEach(function(item) {
             item.addEventListener('click', function() {
@@ -2187,7 +2405,6 @@
             });
         });
 
-        // Fechar menu ao clicar fora
         document.addEventListener('click', function(event) {
             const isClickInsideNav = navLinks.contains(event.target);
             const isClickOnHamburger = hamburger.contains(event.target);
@@ -2199,25 +2416,6 @@
         });
 
         // Typing Effect
-        const textsPT = [
-            'AWS Certificado.', 
-            'Analista de Cloud Jr.', 
-            'DevOps & Automação de Processos', 
-            'FinOps & Infraestrutura como Código', 
-            'Engenharia de Dados e Big Data'
-        ];
-
-        const textsEN = [
-            'AWS Certified.', 
-            'Cloud Analyst Jr.', 
-            'DevOps & Process Automation', 
-            'FinOps & Infrastructure as Code', 
-            'Data Engineering & Big Data'
-        ];
-        
-        let typingTexts = textsPT.slice();
-        let textIndex = 0;
-
         function changeText() {
             const el = document.getElementById('typing-content');
             el.style.opacity = '0';
@@ -2236,18 +2434,30 @@
 
         // Animations
         function initAnimations() {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
+            try {
+                // Adicionar classe visible a todos os elementos imediatamente
+                const elements = document.querySelectorAll('.fade-in, .timeline-item');
+                elements.forEach(function(el) {
+                    el.classList.add('visible');
                 });
-            }, { threshold: 0.1 });
 
-            const elements = document.querySelectorAll('.fade-in, .timeline-item');
-            elements.forEach(function(el) {
-                observer.observe(el);
-            });
+                // Configurar observer para elementos que ainda não apareceram
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible');
+                            }
+                        });
+                    }, { threshold: 0.1 });
+
+                    elements.forEach(function(el) {
+                        observer.observe(el);
+                    });
+                }
+            } catch (error) {
+                // Fallback silencioso
+            }
         }
 
         // Project Filters
@@ -2328,19 +2538,36 @@
         // Language Toggle
         const langBtn = document.getElementById('lang-toggle');
         const langBtnMobile = document.getElementById('lang-toggle-mobile');
-        let currentLang = 'pt';
+        const savedLang = localStorage.getItem('language') || 'pt';
+
+        // Aplicar idioma salvo
+        if (savedLang === 'en') {
+            translatePage('en');
+            langBtn.querySelector('span').textContent = 'PT';
+            langBtnMobile.querySelector('span').textContent = 'PT';
+        }
 
         function toggleLanguage() {
-            currentLang = currentLang === 'pt' ? 'en' : 'pt';
-            const newText = currentLang === 'pt' ? 'EN' : 'PT';
-            langBtn.querySelector('span').textContent = newText;
-            langBtnMobile.querySelector('span').textContent = newText;
-            typingTexts = currentLang === 'pt' ? textsPT : textsEN;
-            textIndex = 0;
+            const newLang = currentLang === 'pt' ? 'en' : 'pt';
+            const btnText = newLang === 'pt' ? 'EN' : 'PT';
+            
+            translatePage(newLang);
+            langBtn.querySelector('span').textContent = btnText;
+            langBtnMobile.querySelector('span').textContent = btnText;
+            
+            // Salvar preferência
+            localStorage.setItem('language', newLang);
         }
 
         langBtn.addEventListener('click', toggleLanguage);
         langBtnMobile.addEventListener('click', toggleLanguage);
+
+        // Iniciar animações
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAnimations);
+        } else {
+            initAnimations();
+        }
     </script>
 </body>
 </html>
