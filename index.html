@@ -204,7 +204,6 @@
             50% { transform: rotateY(180deg); }
         }
 
-        /* --- EFEITO HOVER UNDERLINE --- */
         .logo-text {
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -240,7 +239,6 @@
         .logo:hover .logo-text::before {
             transform: scaleX(1);
         }
-        /* --------------------------- */
 
         .nav-right {
             display: flex;
@@ -452,7 +450,6 @@
             51%, 100% { opacity: 0; }
         }
 
-        /* --- BOTÕES E CTA GROUP --- */
         .cta-group {
             display: flex;
             gap: 15px;
@@ -476,7 +473,7 @@
             overflow: hidden;
             transition: var(--transition);
             font-size: 0.95rem;
-            text-decoration: none; /* Para o link parecer botão */
+            text-decoration: none;
         }
 
         .btn::before {
@@ -503,7 +500,6 @@
             z-index: 1;
         }
 
-        /* Estilo para o botão de download (outline diferente) */
         .btn-outline {
             border-color: var(--gray);
             color: var(--gray);
@@ -511,9 +507,7 @@
 
         .btn-outline:hover {
             border-color: var(--primary);
-            /* O hover padrão vai preencher com o gradiente */
         }
-        /* -------------------------- */
 
         .home-image {
             position: relative;
@@ -1189,7 +1183,6 @@
                 min-height: 45px;
             }
 
-            /* Centraliza botões no tablet */
             .cta-group {
                 justify-content: center;
             }
@@ -1422,7 +1415,6 @@
                 justify-content: center;
             }
 
-            /* Ajuste dos botões no mobile */
             .cta-group {
                 flex-direction: column;
                 width: 100%;
@@ -1433,7 +1425,7 @@
                 padding: 12px 20px;
                 font-size: 0.9rem;
                 justify-content: center;
-                width: 100%; /* Botões full width no mobile */
+                width: 100%;
             }
 
             .home-image {
@@ -1673,7 +1665,6 @@
         <div class="loading-text" data-pt="CARREGANDO..." data-en="LOADING...">CARREGANDO...</div>
     </div>
     <script>
-        // Remover loading screen imediatamente (300ms)
         setTimeout(function() {
             var ls = document.getElementById('loadingScreen');
             if (ls) {
@@ -1890,6 +1881,8 @@
                 <button class="filter-btn" data-filter="devsecops">DevSecOps</button>
                 <button class="filter-btn" data-filter="data" data-pt="Data Engineering" data-en="Data Engineering">Data Engineering</button>
                 <button class="filter-btn" data-filter="monitoring" data-pt="Monitoring" data-en="Monitoring">Monitoring</button>
+                <!-- ✅ NOVO FILTRO: Faculdade -->
+                <button class="filter-btn" data-filter="faculdade" data-pt="Faculdade" data-en="University">Faculdade</button>
             </div>
 
             <div class="projects-grid">
@@ -2166,6 +2159,37 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ✅ NOVO CARD: Laboratório de Programação 1 -->
+                <div class="project-card" data-category="faculdade">
+                    <div class="project-image">
+                        <i class="fab fa-python project-icon"></i>
+                        <div class="project-overlay">
+                            <a href="https://colab.research.google.com/drive/1QlZXCX8eaXQtQ-3M3L09_n68STfO2KH6?usp=sharing" target="_blank" class="btn-action">
+                                <i class="fab fa-google"></i>
+                                <span data-pt="Acessar Códigos" data-en="View Colab">Acessar Códigos</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-pt="Laboratório de Programação 1" data-en="Programming Lab 1">Laboratório de Programação 1</h3>
+                        <p data-pt="Repositório completo da disciplina, contendo 13 aulas com mais de 30 códigos práticos, além de anotações importantes, indicações de livros e links úteis." data-en="Complete course repository with 13 classes and over 30 practical code examples, plus important notes, book recommendations and useful links.">Repositório completo da disciplina, contendo 13 aulas com mais de 30 códigos práticos, além de anotações importantes, indicações de livros e links úteis.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Google Colab</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stats-left">
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                            </div>
+                            <a href="https://colab.research.google.com/drive/1QlZXCX8eaXQtQ-3M3L09_n68STfO2KH6?usp=sharing" target="_blank" class="github-link">
+                                <i class="fab fa-google"></i> Colab
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- ✅ FIM DO NOVO CARD -->
+
             </div>
 
             <div style="text-align: center; margin-top: 60px;">
@@ -2248,12 +2272,10 @@
         let typingTexts = translations.pt.typing;
         let textIndex = 0;
 
-        // Função para traduzir elementos
         function translatePage(lang) {
             currentLang = lang;
             typingTexts = translations[lang].typing;
             
-            // Traduzir todos os elementos com data-pt e data-en
             document.querySelectorAll('[data-pt][data-en]').forEach(el => {
                 const text = el.getAttribute('data-' + lang);
                 if (el.tagName === 'H1') {
@@ -2265,11 +2287,9 @@
                 }
             });
 
-            // Atualizar o texto do typing
             document.getElementById('typing-content').textContent = typingTexts[0];
             textIndex = 0;
 
-            // Atualizar o idioma do HTML
             document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
         }
 
@@ -2328,13 +2348,11 @@
         // Animations
         function initAnimations() {
             try {
-                // Adicionar classe visible a todos os elementos imediatamente
                 const elements = document.querySelectorAll('.fade-in, .timeline-item');
                 elements.forEach(function(el) {
                     el.classList.add('visible');
                 });
 
-                // Configurar observer para elementos que ainda não apareceram
                 if ('IntersectionObserver' in window) {
                     const observer = new IntersectionObserver(function(entries) {
                         entries.forEach(function(entry) {
@@ -2433,7 +2451,6 @@
         const langBtnMobile = document.getElementById('lang-toggle-mobile');
         const savedLang = localStorage.getItem('language') || 'pt';
 
-        // Aplicar idioma salvo
         if (savedLang === 'en') {
             translatePage('en');
             langBtn.querySelector('span').textContent = 'PT';
@@ -2448,7 +2465,6 @@
             langBtn.querySelector('span').textContent = btnText;
             langBtnMobile.querySelector('span').textContent = btnText;
             
-            // Salvar preferência
             localStorage.setItem('language', newLang);
         }
 
