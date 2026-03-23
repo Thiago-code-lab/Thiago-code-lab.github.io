@@ -942,6 +942,105 @@
             z-index: 10;
         }
 
+        /* Destaques visuais por certificacao */
+        .course-card.cert-aws-saa {
+            border-color: rgba(168, 85, 247, 0.45);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-aws-saa .badge-em-andamento {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(192, 132, 252, 0.45);
+            color: #e9d5ff;
+        }
+
+        .course-card.cert-aws-saa:hover {
+            border-color: rgba(192, 132, 252, 0.7);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.in-progress.cert-aws-saa:hover {
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-aws-clf {
+            border-color: rgba(209, 213, 219, 0.55);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-aws-clf:hover {
+            border-color: rgba(229, 231, 235, 0.85);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-cisco {
+            border-color: rgba(34, 211, 238, 0.35);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-cisco:hover {
+            border-color: rgba(103, 232, 249, 0.65);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-google {
+            border-color: rgba(251, 191, 36, 0.35);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-google:hover {
+            border-color: rgba(252, 211, 77, 0.75);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-docker {
+            border-color: rgba(56, 189, 248, 0.45);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-docker:hover {
+            border-color: rgba(125, 211, 252, 0.75);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-isaca {
+            border-color: rgba(34, 197, 94, 0.45);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-isaca:hover {
+            border-color: rgba(134, 239, 172, 0.75);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-agile {
+            border-color: rgba(249, 115, 22, 0.45);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-agile:hover {
+            border-color: rgba(253, 186, 116, 0.75);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-senai {
+            border-color: rgba(244, 63, 94, 0.45);
+            background: var(--bg-raised);
+            box-shadow: var(--shadow-card);
+        }
+
+        .course-card.cert-senai:hover {
+            border-color: rgba(253, 164, 175, 0.75);
+            box-shadow: var(--shadow-card);
+        }
+
         /* ===== PROJETOS ===== */
         .project-filters {
             display: flex;
@@ -1580,7 +1679,30 @@
                 </div>
 
                 <div class="skills-group fade-in">
-                    <h3 data-pt="TECNOLOGIAS" data-en="TECHNOLOGIES">TECNOLOGIAS</h3>
+                    <h3 data-pt="SEGURANÇA" data-en="SECURITY">SEGURANÇA</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name" data-pt="Segurança em Cloud" data-en="Cloud Security">Segurança em Cloud</span>
+                            <span class="skill-pct">72%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name" data-pt="Resposta a Incidentes" data-en="Incident Response">Resposta a Incidentes</span>
+                            <span class="skill-pct">65%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name" data-pt="Redes (CCNA)" data-en="Networking (CCNA)">Redes (CCNA)</span>
+                            <span class="skill-pct">68%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="68"></div></div>
+                    </div>
+
+                    <h3 style="margin-top: 35px;" data-pt="TECNOLOGIAS" data-en="TECHNOLOGIES">TECNOLOGIAS</h3>
                     <div class="tech-badges-grid">
                         <span class="tech-pill"><i class="fab fa-aws"></i> AWS EC2</span>
                         <span class="tech-pill"><i class="fab fa-aws"></i> S3</span>
@@ -1604,29 +1726,6 @@
                         <span class="tech-pill"><i class="fas fa-network-wired"></i> Nginx</span>
                         <span class="tech-pill"><i class="fab fa-wordpress"></i> WordPress (AWS)</span>
                         <span class="tech-pill"><i class="fas fa-tasks"></i> SCRUM</span>
-                    </div>
-
-                    <h3 style="margin-top: 35px;" data-pt="SEGURANÇA" data-en="SECURITY">SEGURANÇA</h3>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name" data-pt="Segurança em Cloud" data-en="Cloud Security">Segurança em Cloud</span>
-                            <span class="skill-pct">72%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name" data-pt="Resposta a Incidentes" data-en="Incident Response">Resposta a Incidentes</span>
-                            <span class="skill-pct">65%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span class="skill-name" data-pt="Redes (CCNA)" data-en="Networking (CCNA)">Redes (CCNA)</span>
-                            <span class="skill-pct">68%</span>
-                        </div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="68"></div></div>
                     </div>
                 </div>
             </div>
@@ -1673,7 +1772,7 @@
             <h2 class="section-title" data-num="04"><span data-pt="Cursos e Certificações" data-en="Courses and Certifications">Cursos e Certificações</span></h2>
             <div class="courses-grid">
                 
-                <div class="course-card fade-in in-progress">
+                <div class="course-card fade-in in-progress cert-aws-saa">
                     <div class="badge-em-andamento" data-pt="Em andamento" data-en="In progress">Em andamento</div>
                     <div class="course-header"><i class="fab fa-aws"></i><span class="course-issuer">Amazon Web Services</span></div>
                     <h3>AWS Solutions Architect – Associate (SAA-C03)</h3>
@@ -1681,69 +1780,64 @@
                     <span class="course-date">2026</span>
                 </div>
                 
-                <div class="course-card fade-in in-progress">
-                    <div class="badge-em-andamento" data-pt="Em andamento" data-en="In progress">Em andamento</div>
-                    <div class="course-header"><i class="fas fa-layer-group"></i><span class="course-issuer">HashiCorp</span></div>
-                    <h3>Terraform Associate (003)</h3>
-                    <p data-pt="Infraestrutura como código com Terraform: módulos, estado remoto, boas práticas e automação em cloud." data-en="Infrastructure as code with Terraform: modules, remote state, best practices, and cloud automation.">Infraestrutura como código com Terraform: módulos, estado remoto, boas práticas e automação em cloud.</p>
-                    <span class="course-date">2026</span>
-                </div>
-                
-                <div class="course-card fade-in">
+                <div class="course-card fade-in cert-aws-clf">
                     <div class="course-header"><i class="fab fa-aws"></i><span class="course-issuer">Amazon Web Services</span></div>
                     <h3><a href="https://www.credly.com/badges/87211bed-3246-43a8-9d4b-6eedfefbc915/public_url" target="_blank" rel="noopener">Certified Cloud Practitioner (CLF-C02)</a></h3>
                     <p data-pt="Fundamentos de nuvem e segurança AWS" data-en="AWS cloud and security fundamentals">Fundamentos de nuvem e segurança AWS</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in">
-                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
-                    <h3>Cisco</h3>
-                    <p data-pt="Conceitos Básicos de Redes" data-en="Networking Basics">Conceitos Básicos de Redes</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in">
-                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
-                    <h3>Cisco</h3>
-                    <p data-pt="Gerenciamento de Ameaças Cibernéticas" data-en="Cyber Threat Management">Gerenciamento de Ameaças Cibernéticas</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in">
-                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
-                    <h3>Cisco</h3>
-                    <p>CCNA: Introduction to Networks</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in">
-                    <div class="course-header"><i class="fab fa-docker"></i><span class="course-issuer">Docker</span></div>
-                    <h3>Docker & Kubernetes</h3>
-                    <p data-pt="Conteinerização e Orquestração" data-en="Containerization and Orchestration">Conteinerização e Orquestração</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in">
+
+                <div class="course-card fade-in cert-google">
                     <div class="course-header"><i class="fab fa-google"></i><span class="course-issuer">Google</span></div>
                     <h3><a href="https://www.credly.com/badges/67905884-c6cb-45f4-a35f-41cbece96106/public_url" target="_blank" rel="noopener">Google</a></h3>
                     <p data-pt="Certificado Profissional de Análise de Dados do Google" data-en="Google Data Analytics Professional Certificate">Certificado Profissional de Análise de Dados do Google</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in">
+                <div class="course-card fade-in cert-google">
                     <div class="course-header"><i class="fab fa-google"></i><span class="course-issuer">Google Cloud</span></div>
                     <h3>Google Cloud</h3>
                     <p data-pt="Inteligência Artificial" data-en="Artificial Intelligence">Inteligência Artificial</p>
                     <span class="course-date">2024</span>
                 </div>
-                <div class="course-card fade-in">
+
+                <div class="course-card fade-in cert-cisco">
+                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
+                    <h3>Cisco</h3>
+                    <p data-pt="Conceitos Básicos de Redes" data-en="Networking Basics">Conceitos Básicos de Redes</p>
+                    <span class="course-date">2025</span>
+                </div>
+                <div class="course-card fade-in cert-cisco">
+                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
+                    <h3>Cisco</h3>
+                    <p data-pt="Gerenciamento de Ameaças Cibernéticas" data-en="Cyber Threat Management">Gerenciamento de Ameaças Cibernéticas</p>
+                    <span class="course-date">2025</span>
+                </div>
+                <div class="course-card fade-in cert-cisco">
+                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
+                    <h3>Cisco</h3>
+                    <p>CCNA: Introduction to Networks</p>
+                    <span class="course-date">2025</span>
+                </div>
+
+                <div class="course-card fade-in cert-docker">
+                    <div class="course-header"><i class="fab fa-docker"></i><span class="course-issuer">Docker</span></div>
+                    <h3>Docker & Kubernetes</h3>
+                    <p data-pt="Conteinerização e Orquestração" data-en="Containerization and Orchestration">Conteinerização e Orquestração</p>
+                    <span class="course-date">2025</span>
+                </div>
+                <div class="course-card fade-in cert-isaca">
                     <div class="course-header"><i class="fas fa-user-shield"></i><span class="course-issuer">ISACA São Paulo</span></div>
                     <h3>ISACA São Paulo</h3>
                     <p>Cybersecurity Fundamentals Certificate</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in">
+                <div class="course-card fade-in cert-agile">
                     <div class="course-header"><i class="fas fa-tasks"></i><span class="course-issuer" data-pt="Métodos Ágeis" data-en="Agile Methods">Métodos Ágeis</span></div>
                     <h3 data-pt="Métodos Ágeis" data-en="Agile Methods">Métodos Ágeis</h3>
                     <p data-pt="Fundamentos do SCRUM" data-en="SCRUM Fundamentals">Fundamentos do SCRUM</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in">
+                <div class="course-card fade-in cert-senai">
                     <div class="course-header"><i class="fas fa-shield-alt"></i><span class="course-issuer">SENAI São Paulo</span></div>
                     <h3>SENAI São Paulo</h3>
                     <p data-pt="Prevenção e Reação aos Incidentes Cibernéticos" data-en="Prevention and Response to Cyber Incidents">Prevenção e Reação aos Incidentes Cibernéticos</p>
