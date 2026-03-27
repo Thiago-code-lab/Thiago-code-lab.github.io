@@ -126,7 +126,7 @@
         .section-title span { background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
  
         #home, #skills, #projetos { background: var(--bg-base); }
-        #trajetoria, #servicos, #cursos { background: var(--bg-raised); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); }
+        #trajetoria, #cursos { background: var(--bg-raised); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); }
  
         /* HOME */
         #home { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; position: relative; }
@@ -472,7 +472,6 @@
                         <li><a href="#home" class="active" data-pt="Início" data-en="Home">Início</a></li>
                         <li><a href="#trajetoria" data-pt="Trajetória" data-en="Journey">Trajetória</a></li>
                         <li><a href="#skills" data-pt="Skills" data-en="Skills">Skills</a></li>
-                        <li><a href="#servicos" data-pt="Serviços" data-en="Services">Serviços</a></li>
                         <li><a href="#cursos" data-pt="Cursos" data-en="Courses">Cursos</a></li>
                         <li><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a></li>
                         <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
@@ -507,11 +506,11 @@
                     </div>
                     <div class="metrics-bar">
                         <div class="metric-item">
-                            <div class="metric-number">0%</div>
-                            <div class="metric-label" data-pt="Cloud Drift" data-en="Cloud Drift">Cloud Drift</div>
+                            <div class="metric-number">FinOps</div>
+                            <div class="metric-label" data-pt="Foco em Custos" data-en="Cost Focus">Foco em Custos</div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-number">15+</div>
+                            <div class="metric-number">20+</div>
                             <div class="metric-label" data-pt="Projetos" data-en="Projects">Projetos</div>
                         </div>
                         <div class="metric-item">
@@ -519,8 +518,8 @@
                             <div class="metric-label" data-pt="Infra como Código" data-en="Infra as Code">Infra como Código</div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-number">AWS</div>
-                            <div class="metric-label" data-pt="Certificado" data-en="Certified">Certificado</div>
+                            <div class="metric-number">CI/CD</div>
+                            <div class="metric-label" data-pt="Automação" data-en="Automation">Automação</div>
                         </div>
                     </div>
                     <div class="cta-group">
@@ -538,7 +537,7 @@
                     <img src="https://media.licdn.com/dms/image/v2/D4D03AQHJd1xye5u9Yg/profile-displayphoto-scale_400_400/B4DZzakxA5KEAk-/0/1773193598935?e=1775088000&v=beta&t=yB0D7ALws6vPfVz1fiadNPohfxuBDF3OLI66jyp2KR4" alt="Thiago Cardoso">
                     <div class="cert-badge">
                         <i class="fab fa-aws"></i>
-                        AWS Certified
+                    Solutions Architect
                     </div>
                 </div>
             </div>
@@ -711,42 +710,12 @@
         </div>
     </section>
  
-    <section id="servicos">
-        <div class="container">
-            <h2 class="section-title" data-num="03"><span data-pt="O que eu faço" data-en="What I Do">O que eu faço</span></h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon-wrap"><i class="fas fa-cloud"></i></div>
-                    <div class="service-body">
-                        <h3>Cloud & DevSecOps</h3>
-                        <p data-pt="Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida." data-en="Cloud infrastructure (AWS), CI/CD, IaC automation, and security practices throughout the lifecycle.">Infraestrutura em nuvem (AWS), CI/CD, automação com IaC e práticas de segurança no ciclo de vida.</p>
-                    </div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon-wrap"><i class="fas fa-database"></i></div>
-                    <div class="service-body">
-                        <h3 data-pt="Big Data & Análise" data-en="Big Data & Analysis">Big Data & Análise</h3>
-                        <p data-pt="Tratamento de grandes volumes de dados, insights de negócio e integração em cloud." data-en="Processing large data volumes, business insights and cloud integration.">Tratamento de grandes volumes de dados, insights de negócio e integração em cloud.</p>
-                    </div>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon-wrap"><i class="fas fa-shield-alt"></i></div>
-                    <div class="service-body">
-                        <h3 data-pt="Segurança da Informação" data-en="Information Security">Segurança da Informação</h3>
-                        <p data-pt="Proteção de sistemas, governança de dados, monitoramento e defesa cibernética." data-en="System protection, data governance, monitoring and cyber defense.">Proteção de sistemas, governança de dados, monitoramento e defesa cibernética.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
- 
     <section id="cursos">
         <div class="container">
             <h2 class="section-title" data-num="04"><span data-pt="Cursos e Certificações" data-en="Courses and Certifications">Cursos e Certificações</span></h2>
             <div class="courses-grid">
                 
-                <div class="course-card fade-in in-progress cert-aws-saa">
-                    <div class="badge-em-andamento" data-pt="Em andamento" data-en="In progress">Em andamento</div>
+                <div class="course-card fade-in cert-aws-saa">
                     <div class="course-header"><i class="fab fa-aws"></i><span class="course-issuer">Amazon Web Services</span></div>
                     <h3>AWS Solutions Architect – Associate (SAA-C03)</h3>
                     <p data-pt="Arquitetura de soluções de nuvem escaláveis, seguras e eficientes." data-en="Architecture of scalable, secure and efficient cloud solutions.">Arquitetura de soluções de nuvem escaláveis, seguras e eficientes.</p>
