@@ -102,7 +102,6 @@
         .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .logo-icon { color: var(--accent-bright); font-size: 1.3rem; }
         .logo-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .header-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-active); object-fit: cover; box-shadow: var(--shadow-card); flex-shrink: 0; }
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .nav-buttons { display: flex; align-items: center; gap: 10px; }
         .nav-right > .nav-buttons { display: none; }
@@ -329,14 +328,8 @@
         .course-card.cert-cisco:hover { border-color: rgba(103, 232, 249, 0.65); }
         .course-card.cert-google { border-color: rgba(251, 191, 36, 0.35); }
         .course-card.cert-google:hover { border-color: rgba(252, 211, 77, 0.75); }
-        .course-card.cert-docker { border-color: rgba(56, 189, 248, 0.45); }
-        .course-card.cert-docker:hover { border-color: rgba(125, 211, 252, 0.75); }
-        .course-card.cert-isaca { border-color: rgba(34, 197, 94, 0.45); }
-        .course-card.cert-isaca:hover { border-color: rgba(134, 239, 172, 0.75); }
         .course-card.cert-agile { border-color: rgba(249, 115, 22, 0.45); }
         .course-card.cert-agile:hover { border-color: rgba(253, 186, 116, 0.75); }
-        .course-card.cert-senai { border-color: rgba(244, 63, 94, 0.45); }
-        .course-card.cert-senai:hover { border-color: rgba(253, 164, 175, 0.75); }
  
         /* PROJETOS */
         .project-filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
@@ -444,7 +437,6 @@
             .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .metric-number { font-size: 1.4rem; }
             .metric-label { font-size: 0.65rem; }
-            .header-avatar { width: 38px; height: 38px; }
         }
     </style>
     <style>
@@ -581,6 +573,27 @@
             }
         }
 
+        @media (max-width: 768px) {
+            body::before,
+            body::after,
+            #particles-canvas,
+            .page-noise {
+                display: none !important;
+            }
+
+            .section-title-word {
+                transition: none !important;
+                filter: none !important;
+            }
+        }
+
+        body.mobile-performance::before,
+        body.mobile-performance::after,
+        body.mobile-performance #particles-canvas,
+        body.mobile-performance .page-noise {
+            display: none !important;
+        }
+
         @media (hover: none) {
             .tilt-card::after {
                 display: none !important;
@@ -616,7 +629,6 @@
                     <span class="logo-icon">&lt;/&gt;</span>
                     <span class="logo-text">Thiago Cardoso</span>
                 </div>
-                <img class="header-avatar" src="thiago.jpg" alt="Foto de Thiago Cardoso">
                 <div class="nav-right">
                     <ul class="nav-links" id="navLinks">
                         <li><a href="#home" class="active" data-pt="Início" data-en="Home">Início</a></li>
@@ -895,46 +907,23 @@
                 <div class="course-card fade-in cert-cisco">
                     <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
                     <h3>Cisco</h3>
-                    <p data-pt="Conceitos Básicos de Redes" data-en="Networking Basics">Conceitos Básicos de Redes</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in cert-cisco">
-                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
-                    <h3>Cisco</h3>
                     <p data-pt="Gerenciamento de Ameaças Cibernéticas" data-en="Cyber Threat Management">Gerenciamento de Ameaças Cibernéticas</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in cert-cisco">
-                    <div class="course-header"><i class="fas fa-network-wired"></i><span class="course-issuer">Cisco</span></div>
-                    <h3>Cisco</h3>
-                    <p>CCNA: Introduction to Networks</p>
-                    <span class="course-date">2025</span>
-                </div>
 
-                <div class="course-card fade-in cert-docker">
-                    <div class="course-header"><i class="fab fa-docker"></i><span class="course-issuer">Docker</span></div>
-                    <h3>Docker & Kubernetes</h3>
-                    <p data-pt="Conteinerização e Orquestração" data-en="Containerization and Orchestration">Conteinerização e Orquestração</p>
-                    <span class="course-date">2025</span>
-                </div>
-                <div class="course-card fade-in cert-isaca">
-                    <div class="course-header"><i class="fas fa-user-shield"></i><span class="course-issuer">ISACA São Paulo</span></div>
-                    <h3>ISACA São Paulo</h3>
-                    <p>Cybersecurity Fundamentals Certificate</p>
-                    <span class="course-date">2025</span>
-                </div>
                 <div class="course-card fade-in cert-agile">
                     <div class="course-header"><i class="fas fa-tasks"></i><span class="course-issuer" data-pt="Métodos Ágeis" data-en="Agile Methods">Métodos Ágeis</span></div>
                     <h3 data-pt="Métodos Ágeis" data-en="Agile Methods">Métodos Ágeis</h3>
                     <p data-pt="Fundamentos do SCRUM" data-en="SCRUM Fundamentals">Fundamentos do SCRUM</p>
                     <span class="course-date">2025</span>
                 </div>
-                <div class="course-card fade-in cert-senai">
-                    <div class="course-header"><i class="fas fa-shield-alt"></i><span class="course-issuer">SENAI São Paulo</span></div>
-                    <h3>SENAI São Paulo</h3>
-                    <p data-pt="Prevenção e Reação aos Incidentes Cibernéticos" data-en="Prevention and Response to Cyber Incidents">Prevenção e Reação aos Incidentes Cibernéticos</p>
-                    <span class="course-date">2025</span>
-                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://drive.google.com/drive/folders/1golySmWUI-0wjs3a5n0YqXnJ0bXzcupc?usp=sharing" target="_blank" rel="noopener" class="btn">
+                    <span data-pt="Ver Todos os Certificados" data-en="View All Certificates">Ver Todos os Certificados</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -1341,6 +1330,8 @@
         let textIndex = 0;
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const touchQuery = window.matchMedia('(hover: none)');
+        const mobileQuery = window.matchMedia('(max-width: 768px)');
+        const mobilePerformanceMode = touchQuery.matches || mobileQuery.matches;
         const scrollProgress = document.getElementById('scrollProgress');
         const scrollProgressLabel = document.getElementById('scrollProgressLabel');
         const loadingScreen = document.getElementById('loadingScreen');
@@ -1349,6 +1340,10 @@
         const backToTop = document.getElementById('backToTop');
         const langBtn = document.getElementById('lang-toggle');
         const langBtnMobile = document.getElementById('lang-toggle-mobile');
+
+        if (mobilePerformanceMode) {
+            document.body.classList.add('mobile-performance');
+        }
 
         function updateScrollProgress() {
             const scrollTop = window.pageYOffset;
@@ -1501,6 +1496,8 @@
         }
 
         function setupInteractiveClasses() {
+            if (mobilePerformanceMode) return;
+
             document.querySelectorAll('.btn').forEach(function(element) {
                 element.classList.add('magnetic-target');
             });
@@ -1525,7 +1522,7 @@
         }
 
         function setupMagneticCursor() {
-            if (touchQuery.matches || prefersReducedMotion) return;
+            if (mobilePerformanceMode || touchQuery.matches || prefersReducedMotion) return;
 
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorRing = document.querySelector('.cursor-ring');
@@ -1582,7 +1579,7 @@
         }
 
         function setupCardTilt() {
-            if (touchQuery.matches || prefersReducedMotion) return;
+            if (mobilePerformanceMode || touchQuery.matches || prefersReducedMotion) return;
 
             document.querySelectorAll('.tilt-card').forEach(function(card) {
                 let resetTimer = null;
@@ -1622,7 +1619,7 @@
 
         function setupParticles() {
             const canvas = document.getElementById('particles-canvas');
-            if (!canvas || prefersReducedMotion) return;
+            if (!canvas || prefersReducedMotion || mobilePerformanceMode) return;
 
             const context = canvas.getContext('2d');
             if (!context) return;
