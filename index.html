@@ -102,6 +102,7 @@
         .logo { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .logo-icon { color: var(--accent-bright); font-size: 1.3rem; }
         .logo-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .header-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-active); object-fit: cover; box-shadow: var(--shadow-card); flex-shrink: 0; }
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .nav-buttons { display: flex; align-items: center; gap: 10px; }
         .nav-right > .nav-buttons { display: none; }
@@ -443,6 +444,7 @@
             .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .metric-number { font-size: 1.4rem; }
             .metric-label { font-size: 0.65rem; }
+            .header-avatar { width: 38px; height: 38px; }
         }
     </style>
     <style>
@@ -505,22 +507,6 @@
             transition: transform 0.08s linear, box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .tilt-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            opacity: 0;
-            background: radial-gradient(circle at var(--highlight-x, 50%) var(--highlight-y, 50%), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.12) 16%, transparent 48%);
-            mix-blend-mode: screen;
-            transition: opacity 0.35s ease;
-        }
-
-        .tilt-card.is-tilting::after {
-            opacity: 0.4;
-        }
-
         .project-card.tilt-card:hover,
         .service-card.tilt-card:hover {
             --hover-shift-y: -4px;
@@ -556,10 +542,6 @@
             transform: translateY(0);
             filter: blur(0);
             transition-delay: calc(var(--word-index, 0) * 80ms);
-        }
-
-        .tech-slider-viewport:hover .tech-track {
-            animation-play-state: paused;
         }
 
         @keyframes footerIconPulse {
@@ -634,6 +616,7 @@
                     <span class="logo-icon">&lt;/&gt;</span>
                     <span class="logo-text">Thiago Cardoso</span>
                 </div>
+                <img class="header-avatar" src="thiago.jpg" alt="Foto de Thiago Cardoso">
                 <div class="nav-right">
                     <ul class="nav-links" id="navLinks">
                         <li><a href="#home" class="active" data-pt="Início" data-en="Home">Início</a></li>
@@ -701,7 +684,7 @@
                     </div>
                 </div>
                 <div class="home-image fade-in">
-                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHJd1xye5u9Yg/profile-displayphoto-scale_400_400/B4DZzakxA5KEAk-/0/1773193598935?e=1775088000&v=beta&t=yB0D7ALws6vPfVz1fiadNPohfxuBDF3OLI66jyp2KR4" alt="Thiago Cardoso">
+                    <img src="thiago.jpg" alt="Thiago Cardoso">
                     <div class="cert-badge">
                         <i class="fab fa-aws"></i>
                     Solutions Architect
@@ -1546,6 +1529,7 @@
 
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorRing = document.querySelector('.cursor-ring');
+            if (!cursorDot || !cursorRing) return;
             let mouseX = window.innerWidth / 2;
             let mouseY = window.innerHeight / 2;
             let ringX = mouseX;
@@ -1887,20 +1871,21 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // Language Toggle
-        const savedLang = localStorage.getItem('language') || 'pt';
-
-        if (savedLang === 'en') {
-            translatePage('en');
-            if (langBtn) langBtn.querySelector('span').textContent = 'PT';
-            if (langBtnMobile) langBtnMobile.querySelector('span').textContent = 'PT';
+        function updateLanguageButtons(lang) {
+            const btnText = lang === 'pt' ? 'EN' : 'PT';
+            if (langBtn) langBtn.querySelector('span').textContent = btnText;
+            if (langBtnMobile) langBtnMobile.querySelector('span').textContent = btnText;
         }
+
+        const savedLang = localStorage.getItem('language');
+        const initialLang = savedLang === 'en' ? 'en' : 'pt';
+        translatePage(initialLang);
+        updateLanguageButtons(initialLang);
 
         function toggleLanguage() {
             const newLang = currentLang === 'pt' ? 'en' : 'pt';
             translatePage(newLang);
-            const btnText = newLang === 'pt' ? 'EN' : 'PT';
-            if (langBtn) langBtn.querySelector('span').textContent = btnText;
-            if (langBtnMobile) langBtnMobile.querySelector('span').textContent = btnText;
+            updateLanguageButtons(newLang);
             localStorage.setItem('language', newLang);
         }
 
