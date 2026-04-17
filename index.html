@@ -118,15 +118,16 @@
         .lang-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent-glow); }
  
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        section { padding: 80px 0; position: relative; }
+        section { --section-padding: 80px; padding: var(--section-padding) 0; position: relative; }
  
         .section-title { font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 60px; position: relative; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.8px; }
         .section-title[data-num]::before { content: attr(data-num) ' ·  ' '<section>'; display: block; font-size: 0.7rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 400; letter-spacing: 2px; }
         .section-title::after { content: '</section>'; display: block; font-size: 0.75rem; color: #8a8a8a; margin-top: 8px; font-weight: 400; }
         .section-title span { background: var(--gradient-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
  
-        #home, #skills, #projetos { background: var(--bg-base); }
+        #home, #projetos { background: var(--bg-base); }
         #trajetoria, #cursos { background: var(--bg-raised); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim); }
+        #cursos .container, #projetos .container { min-height: calc(100vh - (var(--section-padding) * 2)); }
  
         /* HOME */
         #home { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; position: relative; }
@@ -161,125 +162,6 @@
         .home-image:hover img { transform: scale(1.02); }
         .cert-badge { position: absolute; bottom: -16px; right: -16px; background: var(--bg-raised); border: 1px solid var(--border-active); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--accent-bright); z-index: 2; box-shadow: var(--shadow-card); }
         .cert-badge i { font-size: 1.1rem; color: var(--warning); }
- 
-        /* SKILLS */
-        .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-        .skills-group h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 3px; color: var(--text-muted); border-bottom: 1px solid var(--border-dim); padding-bottom: 12px; margin-bottom: 20px; }
-        .skill-item { margin-bottom: 16px; }
-        .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .skill-name { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
-        .skill-pct { color: var(--text-muted); font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; }
-        .skill-bar { height: 4px; background: var(--bg-subtle); border-radius: 2px; overflow: hidden; }
-        .skill-fill { height: 100%; background: var(--gradient); border-radius: 2px; width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
- 
-        /* =====================================================
-           TECH SLIDER — rolagem infinita de ícones
-           ===================================================== */
-        /* ===== TECH SLIDER — DUAS FILEIRAS ===== */
-        .tech-slider-section {
-            margin-top: 60px;
-            position: relative;
-        }
- 
-        .tech-slider-label {
-            text-align: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 28px;
-        }
- 
-        /* Wrapper com fade lateral */
-        .tech-slider-viewport {
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            -webkit-mask-image: linear-gradient(
-                to right,
-                transparent 0%,
-                #000 10%,
-                #000 90%,
-                transparent 100%
-            );
-            mask-image: linear-gradient(
-                to right,
-                transparent 0%,
-                #000 10%,
-                #000 90%,
-                transparent 100%
-            );
-        }
- 
-        /* Trilha base */
-        .tech-track {
-            display: flex;
-            gap: 0;
-            width: max-content;
-        }
- 
-        /* Fileira 1 → esquerda */
-        .tech-track.row-fwd {
-            animation: trackLeft 32s linear infinite;
-        }
- 
-        /* Fileira 2 → direita (começa no meio) */
-        .tech-track.row-rev {
-            animation: trackRight 28s linear infinite;
-        }
- 
-        @keyframes trackLeft {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
- 
-        @keyframes trackRight {
-            0%   { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
- 
-        /* Card de tecnologia */
-        .tech-node {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-right: 12px;
-            padding: 10px 18px;
-            background: var(--bg-raised);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            transition: var(--transition);
-            cursor: default;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
- 
-        .tech-node:hover {
-            border-color: var(--border-active);
-            background: var(--accent-ultra);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px var(--accent-glow);
-        }
- 
-        .tech-node i {
-            font-size: 1.1rem;
-            background: var(--gradient-text);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            flex-shrink: 0;
-        }
- 
-        .tech-node span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            letter-spacing: 0.3px;
-        }
  
         /* TIMELINE */
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; }
@@ -332,28 +214,56 @@
         .course-card.cert-agile:hover { border-color: rgba(253, 186, 116, 0.75); }
  
         /* PROJETOS */
-        .project-filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap; }
+        .project-filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
         .filter-btn { padding: 7px 16px; background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 6px; color: var(--text-secondary); font-weight: 600; font-family: 'JetBrains Mono', monospace; cursor: pointer; transition: var(--transition); font-size: 0.78rem; }
         .filter-btn:hover, .filter-btn.active { background: var(--accent-ultra); border-color: var(--border-active); color: var(--accent-bright); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .project-card { background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; transition: var(--transition); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; max-width: 1080px; margin: 0 auto; align-items: stretch; }
+        .project-card { background: var(--bg-raised); border: 1px solid var(--border-subtle); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; transition: var(--transition); position: relative; height: 100%; }
         .project-card:hover { border-color: var(--border-active); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+        .project-card.github-featured { border-color: rgba(167, 139, 250, 0.24); }
+        .project-card.github-featured:hover { border-color: rgba(167, 139, 250, 0.52); }
         @keyframes filterPopIn { 0% { opacity: 0; transform: scale(0.9) translateY(20px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
         .project-card.animate-in { animation: filterPopIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        .project-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border-dim); background: var(--bg-subtle); }
+        .project-spotlight-flag {
+            position: absolute;
+            top: 10px;
+            right: 54px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 8px 3px 7px;
+            border-radius: 999px;
+            border: 1px solid rgba(167, 139, 250, 0.30);
+            background: rgba(167, 139, 250, 0.09);
+            color: #c4b5fd;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.56rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .project-spotlight-flag::before {
+            content: '★';
+            opacity: 0.9;
+            font-size: 0.62rem;
+            line-height: 1;
+        }
+        .project-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border-dim); background: var(--bg-subtle); }
         .project-header-left { display: flex; align-items: center; }
-        .project-type-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; background: var(--accent-ultra); border: 1px solid var(--border-active); color: var(--accent-bright); }
+        .project-type-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: var(--accent-ultra); border: 1px solid var(--border-active); color: var(--accent-bright); }
         .project-type-badge[data-cat="data"] { background: rgba(34, 211, 238, 0.08); border-color: rgba(34, 211, 238, 0.25); color: #22d3ee; }
         .project-type-badge[data-cat="monitoring"] { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.25); color: #fbbf24; }
         .project-type-badge[data-cat="faculdade"] { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.25); color: #34d399; }
-        .project-year { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-muted); margin-left: 10px; }
-        .project-gh-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--bg-overlay); border: 1px solid var(--border-subtle); border-radius: 8px; color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; transition: var(--transition); }
+        .project-year { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--text-muted); margin-left: 8px; }
+        .project-gh-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: var(--bg-overlay); border: 1px solid var(--border-subtle); border-radius: 7px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
         .project-gh-icon:hover { background: var(--accent-ultra); border-color: var(--border-active); color: var(--accent-bright); }
-        .project-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .project-info h3 { font-size: 1rem; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 10px; color: var(--text-primary); }
-        .project-info p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.65; flex: 1; margin-bottom: 16px; }
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-        .tech-badge { background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border-dim); border-radius: 4px; font-size: 0.7rem; padding: 3px 8px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .project-info { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+        .project-info h3 { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 8px; color: var(--text-primary); }
+        .project-info p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; flex: 1; margin-bottom: 12px; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0; }
+        .tech-badge { background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border-dim); border-radius: 4px; font-size: 0.66rem; padding: 2px 7px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
  
         /* FOOTER */
         footer { background: var(--bg-raised); border-top: 1px solid var(--border-dim); padding: 60px 0 24px; }
@@ -404,7 +314,6 @@
             .home-image { width: 280px; height: 280px; order: -1; }
             .cert-badge { right: 0; bottom: -10px; }
             .metrics-bar { grid-template-columns: repeat(2, 1fr); }
-            .skills-layout { grid-template-columns: 1fr; gap: 40px; }
             .section-title { font-size: 2rem; margin-bottom: 50px; }
             .timeline::before { left: 15px; }
             .timeline-content { width: calc(100% - 50px); margin-left: 50px; padding: 20px; }
@@ -416,7 +325,7 @@
         }
         @media (max-width: 768px) {
             .container { padding: 0 15px; }
-            section { padding: 60px 0; }
+            section { --section-padding: 60px; }
             .logo { font-size: 1.1rem; }
             .section-title { font-size: 1.8rem; margin-bottom: 40px; }
             .home-text h1 { font-size: 1.8rem; }
@@ -425,7 +334,7 @@
         }
         @media (max-width: 576px) {
             .container { padding: 0 12px; }
-            section { padding: 50px 0; }
+            section { --section-padding: 50px; }
             .logo-text { display: none; }
             .section-title { font-size: 1.6rem; }
             .home-text h1 { font-size: 1.6rem; }
@@ -437,6 +346,9 @@
             .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .metric-number { font-size: 1.4rem; }
             .metric-label { font-size: 0.65rem; }
+            .project-spotlight-flag { top: 9px; right: 48px; font-size: 0.52rem; padding: 2px 7px 2px 6px; }
+            .project-header { padding: 12px 14px; }
+            .project-info { padding: 14px; }
         }
     </style>
     <style>
@@ -633,7 +545,6 @@
                     <ul class="nav-links" id="navLinks">
                         <li><a href="#home" class="active" data-pt="Início" data-en="Home">Início</a></li>
                         <li><a href="#trajetoria" data-pt="Trajetória" data-en="Journey">Trajetória</a></li>
-                        <li><a href="#skills" data-pt="Skills" data-en="Skills">Skills</a></li>
                         <li><a href="#cursos" data-pt="Cursos" data-en="Courses">Cursos</a></li>
                         <li><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a></li>
                         <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
@@ -742,139 +653,9 @@
         </div>
     </section>
  
-    <!-- ===== SKILLS ===== -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title" data-num="02"><span data-pt="Habilidades Técnicas" data-en="Technical Skills">Habilidades Técnicas</span></h2>
- 
-            <!-- Barras de progresso (duas colunas) -->
-            <div class="skills-layout">
-                <div class="skills-group fade-in">
-                    <h3 data-pt="CLOUD & DEVOPS" data-en="CLOUD & DEVOPS">CLOUD & DEVOPS</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">AWS</span><span class="skill-pct">85%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">Docker & Kubernetes</span><span class="skill-pct">75%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">Terraform / IaC</span><span class="skill-pct">70%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">CI/CD (GitHub Actions, ArgoCD)</span><span class="skill-pct">80%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">FinOps / Cost Optimization</span><span class="skill-pct">78%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
-                    </div>
-                </div>
- 
-                <div class="skills-group fade-in">
-                    <h3 data-pt="DADOS & PROGRAMAÇÃO" data-en="DATA & PROGRAMMING">DADOS & PROGRAMAÇÃO</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">SQL / PostgreSQL</span><span class="skill-pct">78%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">Data Engineering / ETL</span><span class="skill-pct">70%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">Pandas / NumPy</span><span class="skill-pct">77%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="77"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span class="skill-name">PySpark / Big Data</span><span class="skill-pct">69%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="69"></div></div>
-                    </div>
-                </div>
-            </div>
-            <!-- /skills-layout -->
- 
-            <!-- ===== TECH SLIDER — DUAS FILEIRAS ===== -->
-            <div class="tech-slider-section">
-                <p class="tech-slider-label" data-pt="TECNOLOGIAS & FERRAMENTAS" data-en="TECHNOLOGIES & TOOLS">TECNOLOGIAS & FERRAMENTAS</p>
- 
-                <div class="tech-slider-viewport">
- 
-                    <!-- FILEIRA 1 → esquerda (Cloud, DevOps, IaC) -->
-                    <div class="tech-track row-fwd">
-                        <!-- Conjunto 1 -->
-                        <div class="tech-node"><i class="fab fa-aws"></i><span>AWS</span></div>
-                        <div class="tech-node"><i class="fas fa-server"></i><span>EC2</span></div>
-                        <div class="tech-node"><i class="fas fa-box-archive"></i><span>S3</span></div>
-                        <div class="tech-node"><i class="fas fa-bolt"></i><span>Lambda</span></div>
-                        <div class="tech-node"><i class="fas fa-database"></i><span>RDS</span></div>
-                        <div class="tech-node"><i class="fas fa-fire"></i><span>AWS Glue</span></div>
-                        <div class="tech-node"><i class="fas fa-magnifying-glass-chart"></i><span>Athena</span></div>
-                        <div class="tech-node"><i class="fas fa-cloud"></i><span>CloudFormation</span></div>
-                        <div class="tech-node"><i class="fab fa-docker"></i><span>Docker</span></div>
-                        <div class="tech-node"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span></div>
-                        <div class="tech-node"><i class="fas fa-layer-group"></i><span>Terraform</span></div>
-                        <div class="tech-node"><i class="fas fa-code-branch"></i><span>ArgoCD</span></div>
-                        <!-- Conjunto 2 — cópia para loop sem salto -->
-                        <div class="tech-node"><i class="fab fa-aws"></i><span>AWS</span></div>
-                        <div class="tech-node"><i class="fas fa-server"></i><span>EC2</span></div>
-                        <div class="tech-node"><i class="fas fa-box-archive"></i><span>S3</span></div>
-                        <div class="tech-node"><i class="fas fa-bolt"></i><span>Lambda</span></div>
-                        <div class="tech-node"><i class="fas fa-database"></i><span>RDS</span></div>
-                        <div class="tech-node"><i class="fas fa-fire"></i><span>AWS Glue</span></div>
-                        <div class="tech-node"><i class="fas fa-magnifying-glass-chart"></i><span>Athena</span></div>
-                        <div class="tech-node"><i class="fas fa-cloud"></i><span>CloudFormation</span></div>
-                        <div class="tech-node"><i class="fab fa-docker"></i><span>Docker</span></div>
-                        <div class="tech-node"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span></div>
-                        <div class="tech-node"><i class="fas fa-layer-group"></i><span>Terraform</span></div>
-                        <div class="tech-node"><i class="fas fa-code-branch"></i><span>ArgoCD</span></div>
-                    </div>
- 
-                    <!-- FILEIRA 2 → direita (Dev, Dados, Segurança) -->
-                    <div class="tech-track row-rev">
-                        <!-- Conjunto 1 -->
-                        <div class="tech-node"><i class="fab fa-python"></i><span>Python</span></div>
-                        <div class="tech-node"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
-                        <div class="tech-node"><i class="fab fa-git-alt"></i><span>Git</span></div>
-                        <div class="tech-node"><i class="fab fa-github"></i><span>GitHub Actions</span></div>
-                        <div class="tech-node"><i class="fab fa-linux"></i><span>Linux</span></div>
-                        <div class="tech-node"><i class="fas fa-shield-alt"></i><span>Security as Code</span></div>
-                        <div class="tech-node"><i class="fas fa-coins"></i><span>FinOps</span></div>
-                        <div class="tech-node"><i class="fas fa-chart-bar"></i><span>Streamlit</span></div>
-                        <div class="tech-node"><i class="fas fa-network-wired"></i><span>Nginx</span></div>
-                        <div class="tech-node"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                        <div class="tech-node"><i class="fas fa-tasks"></i><span>SCRUM</span></div>
-                        <div class="tech-node"><i class="fas fa-user-shield"></i><span>IAM</span></div>
-                        <!-- Conjunto 2 — cópia para loop sem salto -->
-                        <div class="tech-node"><i class="fab fa-python"></i><span>Python</span></div>
-                        <div class="tech-node"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
-                        <div class="tech-node"><i class="fab fa-git-alt"></i><span>Git</span></div>
-                        <div class="tech-node"><i class="fab fa-github"></i><span>GitHub Actions</span></div>
-                        <div class="tech-node"><i class="fab fa-linux"></i><span>Linux</span></div>
-                        <div class="tech-node"><i class="fas fa-shield-alt"></i><span>Security as Code</span></div>
-                        <div class="tech-node"><i class="fas fa-coins"></i><span>FinOps</span></div>
-                        <div class="tech-node"><i class="fas fa-chart-bar"></i><span>Streamlit</span></div>
-                        <div class="tech-node"><i class="fas fa-network-wired"></i><span>Nginx</span></div>
-                        <div class="tech-node"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                        <div class="tech-node"><i class="fas fa-tasks"></i><span>SCRUM</span></div>
-                        <div class="tech-node"><i class="fas fa-user-shield"></i><span>IAM</span></div>
-                    </div>
- 
-                </div>
-            </div>
-            <!-- /tech-slider-section -->
- 
-        </div>
-    </section>
- 
     <section id="cursos">
         <div class="container">
-            <h2 class="section-title" data-num="04"><span data-pt="Cursos e Certificações" data-en="Courses and Certifications">Cursos e Certificações</span></h2>
+            <h2 class="section-title" data-num="02"><span data-pt="Cursos e Certificações" data-en="Courses and Certifications">Cursos e Certificações</span></h2>
             <div class="courses-grid">
                 
                 <div class="course-card fade-in cert-aws-saa">
@@ -930,39 +711,15 @@
 
     <section id="projetos">
         <div class="container">
-            <h2 class="section-title" data-num="05"><span data-pt="Meus Projetos" data-en="My Projects">Meus Projetos</span></h2>
+            <h2 class="section-title" data-num="03"><span data-pt="Meus Projetos" data-en="My Projects">Meus Projetos</span></h2>
 
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all" data-pt="Todos" data-en="All">Todos</button>
-                <button class="filter-btn" data-filter="devsecops">DevSecOps</button>
-                <button class="filter-btn" data-filter="data" data-pt="Data Engineering" data-en="Data Engineering">Data Engineering</button>
-                <button class="filter-btn" data-filter="monitoring">Monitoring</button>
+                <button class="filter-btn" data-filter="data" data-pt="Data" data-en="Data">Data</button>
                 <button class="filter-btn" data-filter="faculdade" data-pt="Faculdade" data-en="University">Faculdade</button>
             </div>
 
             <div class="projects-grid">
-                <div class="project-card" data-category="devsecops">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="devsecops">DevSecOps</span>
-                            <span class="project-year">2025</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/pipeline-devsecops-docker-gitea" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3>Pipeline DevSecOps Docker + Gitea</h3>
-                        <p data-pt="Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado." data-en="Complete CI/CD pipeline implementing DevSecOps practices with Docker and Gitea. Includes build automation, security testing and automated deployment.">Pipeline completo de CI/CD implementando práticas DevSecOps com Docker e Gitea. Inclui automação de builds, testes de segurança e deploy automatizado.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Docker</span>
-                            <span class="tech-badge">Gitea</span>
-                            <span class="tech-badge">DevSecOps</span>
-                            <span class="tech-badge">Bash</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="project-card" data-category="data">
                     <div class="project-header">
                         <div class="project-header-left">
@@ -984,70 +741,6 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="monitoring">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="monitoring">Monitoring</span>
-                            <span class="project-year">2025</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/nginx-monitor-discord" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3>Nginx Monitor Discord</h3>
-                        <p data-pt="Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes." data-en="Nginx monitoring system with automated Discord notifications. Collects real-time metrics, detects anomalies and sends intelligent alerts.">Sistema de monitoramento do Nginx com notificações automatizadas via Discord. Coleta métricas em tempo real, detecta anomalias e envia alertas inteligentes.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Nginx</span>
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Discord</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="data">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="data">Data</span>
-                            <span class="project-year">2025</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/tour4friends-analytics" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3>Tour4Friends Analytics - DW</h3>
-                        <p data-pt="DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema)." data-en="DW with dimensional modeling, PL/pgSQL automation, governance and auditing for BI analysis (Star Schema).">DW com modelagem dimensional, automação em PL/pgSQL, governança e auditoria para análises de BI (Star Schema).</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">PostgreSQL</span>
-                            <span class="tech-badge">PL/pgSQL</span>
-                            <span class="tech-badge">Git</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="devsecops">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="devsecops">DevSecOps</span>
-                            <span class="project-year">2025</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/compass-python-api-ci-cd" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-pt="Pipeline CI/CD com GitHub Actions, ArgoCD e K8s" data-en="CI/CD Pipeline with GitHub Actions, ArgoCD and K8s">Pipeline CI/CD com GitHub Actions, ArgoCD e K8s</h3>
-                        <p data-pt="Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD." data-en="GitOps pipeline for FastAPI with build/test, Docker Hub push and declarative deployment on Kubernetes via ArgoCD.">Pipeline GitOps para FastAPI com build/test, push no Docker Hub e deploy declarativo no Kubernetes via ArgoCD.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">GitHub Actions</span>
-                            <span class="tech-badge">ArgoCD</span>
-                            <span class="tech-badge">Kubernetes</span>
-                            <span class="tech-badge">Docker</span>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="project-card" data-category="data">
                     <div class="project-header">
                         <div class="project-header-left">
@@ -1065,6 +758,34 @@
                             <span class="tech-badge">AWS</span>
                             <span class="tech-badge">Docs</span>
                             <span class="tech-badge">Cloud</span>
+                            <span class="tech-badge">+30 Stars</span>
+                            <span class="tech-badge">4 Forks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card github-featured" data-category="data">
+                    <span class="project-spotlight-flag" data-pt="Destaque GitHub" data-en="GitHub Highlight">Destaque GitHub</span>
+                    <div class="project-header">
+                        <div class="project-header-left">
+                            <span class="project-type-badge" data-cat="data">Data</span>
+                            <span class="project-year">2026</span>
+                        </div>
+                        <a href="https://github.com/Thiago-code-lab/aws-solutions-architect-brasil.git" target="_blank" class="project-gh-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-pt="AWS Solutions Architect Associate PT-BR" data-en="AWS Solutions Architect Associate PT-BR">AWS Solutions Architect Associate PT-BR</h3>
+                        <p data-pt="Guia completo em PT-BR para certificação SAA-C03 com trilha de 8 semanas, módulos por domínio, questões, flashcards, labs práticos e cenários de arquitetura." data-en="Complete PT-BR guide for the SAA-C03 certification with an 8-week study track, domain-based modules, questions, flashcards, hands-on labs and architecture scenarios.">Guia completo em PT-BR para certificação SAA-C03 com trilha de 8 semanas, módulos por domínio, questões, flashcards, labs práticos e cenários de arquitetura.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">AWS</span>
+                            <span class="tech-badge">SAA-C03</span>
+                            <span class="tech-badge">Arquitetura</span>
+                            <span class="tech-badge">Labs</span>
+                            <span class="tech-badge">Docs</span>
+                            <span class="tech-badge">+900 Stars</span>
+                            <span class="tech-badge">183 Forks</span>
                         </div>
                     </div>
                 </div>
@@ -1089,99 +810,6 @@
                             <span class="tech-badge">S3</span>
                             <span class="tech-badge">Glue</span>
                             <span class="tech-badge">Athena</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="data">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="data">Data</span>
-                            <span class="project-year">2026</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/projeto-phoenix" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-pt="Projeto Phoenix" data-en="Phoenix Project">Projeto Phoenix</h3>
-                        <p data-pt="Plataforma pessoal de transformação para organizar vida, acompanhar crescimento e alcançar objetivos. Sistema completo com biblioteca, academia, finanças, metas, saúde e diário." data-en="Personal transformation platform to organize life, track growth and achieve goals. Complete system with library, gym, finances, goals, health and journal.">Plataforma pessoal de transformação para organizar vida, acompanhar crescimento e alcançar objetivos. Sistema completo com biblioteca, academia, finanças, metas, saúde e diário.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Streamlit</span>
-                            <span class="tech-badge">SQLite</span>
-                            <span class="tech-badge">Plotly</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="data">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="data">Data</span>
-                            <span class="project-year">2026</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/tour4friends-datalake.git" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-pt="Tour4Friends Analytics - Data Lake" data-en="Tour4Friends Analytics - Data Lake">Tour4Friends Analytics - Data Lake</h3>
-                        <p data-pt="Arquitetura ELT moderna para turismo com MongoDB, Kafka e AWS (S3, Glue e Athena), transformando dados brutos em insights para BI com Power BI." data-en="Modern ELT architecture for tourism with MongoDB, Kafka and AWS (S3, Glue and Athena), turning raw data into BI insights with Power BI.">Arquitetura ELT moderna para turismo com MongoDB, Kafka e AWS (S3, Glue e Athena), transformando dados brutos em insights para BI com Power BI.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">MongoDB</span>
-                            <span class="tech-badge">Kafka</span>
-                            <span class="tech-badge">AWS Glue</span>
-                            <span class="tech-badge">S3</span>
-                            <span class="tech-badge">Athena</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="data">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="data">Data</span>
-                            <span class="project-year">2026</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/aws-solutions-architect-brasil.git" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-pt="AWS Solutions Architect Associate PT-BR" data-en="AWS Solutions Architect Associate PT-BR">AWS Solutions Architect Associate PT-BR</h3>
-                        <p data-pt="Guia completo em PT-BR para certificação SAA-C03 com trilha de 8 semanas, módulos por domínio, questões, flashcards, labs práticos e cenários de arquitetura." data-en="Complete PT-BR guide for the SAA-C03 certification with an 8-week study track, domain-based modules, questions, flashcards, hands-on labs and architecture scenarios.">Guia completo em PT-BR para certificação SAA-C03 com trilha de 8 semanas, módulos por domínio, questões, flashcards, labs práticos e cenários de arquitetura.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">AWS</span>
-                            <span class="tech-badge">SAA-C03</span>
-                            <span class="tech-badge">Arquitetura</span>
-                            <span class="tech-badge">Labs</span>
-                            <span class="tech-badge">Docs</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card" data-category="devsecops">
-                    <div class="project-header">
-                        <div class="project-header-left">
-                            <span class="project-type-badge" data-cat="devsecops">DevSecOps</span>
-                            <span class="project-year">2025</span>
-                        </div>
-                        <a href="https://github.com/Thiago-code-lab/wordpress-aws-environment-docs" target="_blank" class="project-gh-icon" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-pt="Infraestrutura WordPress - AWS" data-en="WordPress Infrastructure - AWS">Infraestrutura WordPress - AWS</h3>
-                        <p data-pt="Infraestrutura completa e escalável para WordPress na AWS com Docker, Auto Scaling, Multi-AZ deployment e alta disponibilidade." data-en="Complete and scalable WordPress infrastructure on AWS with Docker, Auto Scaling, Multi-AZ deployment and high availability.">Infraestrutura completa e escalável para WordPress na AWS com Docker, Auto Scaling, Multi-AZ deployment e alta disponibilidade.</p>
-                        <div class="tech-stack">
-                            <span class="tech-badge">AWS</span>
-                            <span class="tech-badge">WordPress</span>
-                            <span class="tech-badge">Docker</span>
-                            <span class="tech-badge">Auto Scaling</span>
-                            <span class="tech-badge">RDS</span>
-                            <span class="tech-badge">EFS</span>
                         </div>
                     </div>
                 </div>
@@ -1253,7 +881,6 @@
                     <span class="footer-nav-label" data-pt="Navegação" data-en="Navigation">Navegação</span>
                     <ul class="footer-nav-links">
                         <li><a href="#trajetoria" data-pt="Trajetória" data-en="Journey">Trajetória</a></li>
-                        <li><a href="#skills" data-pt="Skills" data-en="Skills">Skills</a></li>
                         <li><a href="#projetos" data-pt="Projetos" data-en="Projects">Projetos</a></li>
                         <li><a href="#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
                     </ul>
@@ -1504,12 +1131,6 @@
 
             document.querySelectorAll('.nav-links a').forEach(function(element) {
                 element.classList.add('magnetic-target');
-            });
-
-            document.querySelectorAll('.tech-node').forEach(function(element) {
-                if (!element.classList.contains('hero-floating-badge')) {
-                    element.classList.add('magnetic-target');
-                }
             });
 
             document.querySelectorAll('.project-card, .service-card').forEach(function(element) {
@@ -1767,22 +1388,11 @@
         }
         setTimeout(changeText, 3000);
 
-        // Skill bars animation
-        function animateSkillBars() {
-            document.querySelectorAll('.skill-fill').forEach(function(bar) {
-                const width = bar.getAttribute('data-width');
-                if (width) bar.style.width = width + '%';
-            });
-        }
-
         // Intersection Observer for animations
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    if (entry.target.closest('#skills')) {
-                        setTimeout(animateSkillBars, 200);
-                    }
                 }
             });
         }, { threshold: 0.1 });
@@ -1791,13 +1401,6 @@
             observer.observe(el);
         });
 
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            const skillsObserver = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting) setTimeout(animateSkillBars, 300);
-            }, { threshold: 0.2 });
-            skillsObserver.observe(skillsSection);
-        }
 
         prepareSectionTitleWords();
         setupSectionTitleObserver();
