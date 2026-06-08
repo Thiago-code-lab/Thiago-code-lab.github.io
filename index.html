@@ -2142,7 +2142,13 @@
             border-radius: 18px;
             padding: 14px 20px;
             background: var(--accent-gradient);
+            color: #f8fafc;
             box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18);
+        }
+
+        .btn span,
+        .btn i {
+            color: inherit;
         }
 
         .btn:hover {
@@ -2163,36 +2169,81 @@
 
         .home-image {
             position: relative;
-            padding: 24px;
-            border-radius: 34px;
+            width: min(100%, 360px);
+            height: auto;
+            padding: 0;
+            border-radius: 0;
+            display: grid;
+            gap: 16px;
+            justify-items: center;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
         }
 
         .home-image::before {
-            border-radius: 34px;
-            background:
-                linear-gradient(135deg, rgba(37, 99, 235, 0.10), transparent 32%),
-                linear-gradient(315deg, rgba(6, 182, 212, 0.12), transparent 26%);
+            display: none;
+        }
+
+        .home-image-frame {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: auto;
+            padding: 0;
+            border-radius: 30px;
+            background: transparent;
+            border: 0;
+            box-shadow: 0 22px 44px rgba(15, 23, 42, 0.12);
+            overflow: hidden;
         }
 
         .home-image img {
             position: relative;
             width: 100%;
+            height: auto;
             display: block;
-            border-radius: 28px;
-            aspect-ratio: 4 / 5;
-            object-fit: cover;
-            box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+            border-radius: 30px;
+            aspect-ratio: auto;
+            object-fit: contain;
+            object-position: center top;
+            box-shadow: none;
         }
 
         .cert-badge {
-            left: 22px;
-            bottom: 22px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
             padding: 14px 18px;
             border-radius: 18px;
             background: rgba(8, 17, 32, 0.9);
             color: #f8fafc;
             border: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 18px 36px rgba(8, 17, 32, 0.22);
+            width: min(100%, 360px);
+        }
+
+        .cert-badge-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #cbd5e1;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .cert-badge-title {
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            text-align: right;
         }
 
         .cert-badge i {
@@ -2449,9 +2500,9 @@
         }
 
         .project-spotlight-flag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: static;
+            align-self: flex-start;
+            margin-bottom: 16px;
         }
 
         .project-header {
@@ -2670,8 +2721,12 @@
 
             #home::before {
                 top: 80px;
-                height: 520px;
+                height: 640px;
                 width: calc(100% - 24px);
+            }
+
+            .home-content {
+                gap: 24px;
             }
 
             .home-text,
@@ -2680,9 +2735,60 @@
                 padding: 24px;
             }
 
+            .home-text {
+                padding: 24px 20px;
+                text-align: center;
+            }
+
+            .hero-status,
+            .typing-text,
+            .cta-group {
+                justify-content: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-summary {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 0.98rem;
+            }
+
+            .home-image {
+                order: -1;
+                width: min(100%, 360px);
+                height: auto;
+                max-width: none;
+                margin: 0 auto;
+                padding: 0;
+                border-radius: 0;
+            }
+
+            .home-image-frame {
+                width: 100%;
+                border-radius: 24px;
+            }
+
+            .home-image img {
+                border-radius: 22px;
+            }
+
+            .cert-badge {
+                justify-content: center;
+                flex-direction: column;
+                gap: 6px;
+                margin-top: 0;
+                width: 100%;
+                text-align: center;
+            }
+
             .metrics-bar,
             .courses-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .metric-item {
+                min-height: 96px;
             }
 
             .timeline {
@@ -2708,6 +2814,14 @@
                 grid-template-columns: 1fr;
             }
 
+            #home {
+                padding-top: 124px;
+            }
+
+            #home::before {
+                height: 600px;
+            }
+
             .cta-group {
                 flex-direction: column;
             }
@@ -2721,10 +2835,39 @@
                 font-size: clamp(2.5rem, 15vw, 3.5rem);
             }
 
+            .home-text {
+                padding: 22px 18px;
+            }
+
             .hero-status {
                 gap: 8px;
                 padding: 10px 12px;
                 font-size: 0.8rem;
+            }
+
+            .home-image {
+                width: min(100%, 320px);
+                height: auto;
+                padding: 0;
+            }
+
+            .home-image-frame {
+                border-radius: 22px;
+            }
+
+            .cert-badge {
+                padding: 12px 14px;
+                border-radius: 16px;
+            }
+
+            .cert-badge-label {
+                font-size: 0.7rem;
+                letter-spacing: 0.06em;
+            }
+
+            .cert-badge-title {
+                font-size: 0.92rem;
+                text-align: center;
             }
 
             .project-spotlight-flag {
@@ -2734,13 +2877,6 @@
 
             .project-header {
                 align-items: flex-start;
-            }
-
-            .cert-badge {
-                position: static;
-                justify-content: center;
-                margin-top: 16px;
-                width: 100%;
             }
 
             footer .container {
@@ -2861,10 +2997,15 @@
                     </div>
                 </div>
                 <div class="home-image fade-in">
-                    <img src="thiago.jpg" alt="Thiago Cardoso">
+                    <div class="home-image-frame">
+                        <img src="thiago.jpg" alt="Thiago Cardoso">
+                    </div>
                     <div class="cert-badge">
-                        <i class="fab fa-aws"></i>
-                        Solutions Architect
+                        <span class="cert-badge-label">
+                            <i class="fab fa-aws"></i>
+                            AWS Certified
+                        </span>
+                        <span class="cert-badge-title">Solutions Architect</span>
                     </div>
                 </div>
             </div>
@@ -2902,9 +3043,10 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2025</span>
                         <h3 data-pt="Estagiário DevSecOps" data-en="DevSecOps Intern">Estagiário DevSecOps</h3>
-                        <p data-pt="<strong class='company-tag'>Compass UOL</strong> Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code."
-                            data-en="<strong class='company-tag'>Compass UOL</strong> Working with AWS, infrastructure automation, CI/CD and Security as Code.">
-                            <strong class="company-tag">Compass UOL</strong> Atuação com AWS, automação de
+                        <p data-pt="<a class='company-tag' href='https://aircompany.ai/en/aws/' target='_blank' rel='noopener'>Compass UOL</a> Atuação com AWS, automação de infraestrutura, CI/CD e Security as Code."
+                            data-en="<a class='company-tag' href='https://aircompany.ai/en/aws/' target='_blank' rel='noopener'>Compass UOL</a> Working with AWS, infrastructure automation, CI/CD and Security as Code.">
+                            <a class="company-tag" href="https://aircompany.ai/en/aws/" target="_blank"
+                                rel="noopener">Compass UOL</a> Atuação com AWS, automação de
                             infraestrutura, CI/CD e Security as Code.</p>
                     </div>
                 </article>
@@ -2912,9 +3054,10 @@
                     <div class="timeline-content">
                         <span class="timeline-date">2026</span>
                         <h3 data-pt="Analista de Cloud Jr." data-en="Jr. Cloud Analyst">Analista de Cloud Jr.</h3>
-                        <p data-pt="<strong class='company-tag'>Pixxel</strong> Evolução de ambientes AWS, implementação de FinOps (otimização de custos), automação e projetos de dados."
-                            data-en="<strong class='company-tag'>Pixxel</strong> AWS environment evolution, FinOps implementation (cost optimization), automation and data projects.">
-                            <strong class="company-tag">Pixxel</strong> Evolução de ambientes AWS, implementação de
+                        <p data-pt="<a class='company-tag' href='https://pxxl.ai/' target='_blank' rel='noopener'>Pixxel</a> Evolução de ambientes AWS, implementação de FinOps (otimização de custos), automação e projetos de dados."
+                            data-en="<a class='company-tag' href='https://pxxl.ai/' target='_blank' rel='noopener'>Pixxel</a> AWS environment evolution, FinOps implementation (cost optimization), automation and data projects.">
+                            <a class="company-tag" href="https://pxxl.ai/" target="_blank" rel="noopener">Pixxel</a>
+                            Evolução de ambientes AWS, implementação de
                             FinOps (otimização de custos), automação e projetos de dados.</p>
                     </div>
                 </article>
@@ -2922,9 +3065,10 @@
                     <div class="timeline-content">
                         <span class="timeline-date" data-pt="2026 - Atual" data-en="2026 - Present">2026 - Atual</span>
                         <h3 data-pt="Fundador da CloudStudy" data-en="CloudStudy Founder">Fundador da CloudStudy</h3>
-                        <p data-pt="<strong class='company-tag'>CloudStudy</strong> Plataforma de estudos para certificações AWS criada após minha saída da Pixxel. O foco é oferecer trilhas claras, materiais práticos e uma experiência simples para quem quer evoluir com consistência."
-                            data-en="<strong class='company-tag'>CloudStudy</strong> AWS certification study platform created after leaving Pixxel. The focus is on clear learning paths, practical materials, and a simple experience for consistent growth.">
-                            <strong class="company-tag">CloudStudy</strong> Plataforma de estudos para certificações AWS
+                        <p data-pt="<a class='company-tag' href='https://cloudstudy.com.br' target='_blank' rel='noopener'>CloudStudy</a> Plataforma de estudos para certificações AWS criada após minha saída da Pixxel. O foco é oferecer trilhas claras, materiais práticos e uma experiência simples para quem quer evoluir com consistência."
+                            data-en="<a class='company-tag' href='https://cloudstudy.com.br' target='_blank' rel='noopener'>CloudStudy</a> AWS certification study platform created after leaving Pixxel. The focus is on clear learning paths, practical materials, and a simple experience for consistent growth.">
+                            <a class="company-tag" href="https://cloudstudy.com.br" target="_blank"
+                                rel="noopener">CloudStudy</a> Plataforma de estudos para certificações AWS
                             criada após minha saída da Pixxel. O foco é oferecer trilhas claras, materiais práticos e
                             uma experiência simples para quem quer evoluir com consistência.</p>
                     </div>
@@ -3254,12 +3398,6 @@
                 <div class="footer-contact">
                     <span class="footer-nav-label" data-pt="Contato" data-en="Contact">Contato</span>
                     <div class="channel">
-                        <a href="https://wa.me/5511952069862" target="_blank" class="channel-link">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp: (11) 95206-9862</span>
-                        </a>
-                    </div>
-                    <div class="channel">
                         <a href="https://www.linkedin.com/in/analyticsthiagocardoso" target="_blank"
                             class="channel-link">
                             <i class="fab fa-linkedin-in"></i>
@@ -3282,9 +3420,6 @@
                     </a>
                     <a href="https://www.linkedin.com/in/analyticsthiagocardoso" target="_blank" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://wa.me/5511952069862" target="_blank" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
                 <p class="copyright">&copy; <span id="current-year"></span> Thiago Cardoso. <span
